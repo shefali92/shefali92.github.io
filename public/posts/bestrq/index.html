@@ -10,9 +10,9 @@
   lang="en-US"
   dir="ltr"
   class="scroll-smooth"
-  data-default-appearance="dark"
-  data-auto-appearance="true"
-><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  data-default-appearance="light"
+  data-auto-appearance="false"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=54665&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
@@ -84,7 +84,7 @@
   
   
   
-  <link rel="canonical" href="http://localhost:1313/posts/bestrq/" />
+  <link rel="canonical" href="http://localhost:54665/posts/bestrq/" />
   
   
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -99,7 +99,7 @@
   
   
   
-  <meta property="og:url" content="http://localhost:1313/posts/bestrq/">
+  <meta property="og:url" content="http://localhost:54665/posts/bestrq/">
   <meta property="og:site_name" content="Shefali Garg">
   <meta property="og:title" content="Understanding BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition">
   <meta property="og:description" content="This article explores BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition.">
@@ -111,11 +111,11 @@
     <meta property="article:tag" content="Speech">
     <meta property="article:tag" content="AI">
     <meta property="article:tag" content="Self-Supervised Training">
-    <meta property="og:image" content="http://localhost:1313/posts/bestrq/feature-artturi-jalli-gYrYa37fAKI-unsplash.jpg">
+    <meta property="og:image" content="http://localhost:54665/posts/bestrq/feature-artturi-jalli-gYrYa37fAKI-unsplash.jpg">
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="http://localhost:1313/posts/bestrq/feature-artturi-jalli-gYrYa37fAKI-unsplash.jpg">
+  <meta name="twitter:image" content="http://localhost:54665/posts/bestrq/feature-artturi-jalli-gYrYa37fAKI-unsplash.jpg">
   <meta name="twitter:title" content="Understanding BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition">
   <meta name="twitter:description" content="This article explores BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition.">
 
@@ -130,7 +130,7 @@
     "description": "This article explores BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition.",
     
     "inLanguage": "en-US",
-    "url" : "http:\/\/localhost:1313\/posts\/bestrq\/",
+    "url" : "http:\/\/localhost:54665\/posts\/bestrq\/",
     "author" : {
       "@type": "Person",
       "name": "Shefali Garg"
@@ -144,7 +144,7 @@
     "keywords": ["Speech","AI","Self-supervised Training"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1548"
+    "wordCount": "1552"
   }
   </script>
     
@@ -155,13 +155,13 @@
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/",
+       "item": "http://localhost:54665/",
        "name": "Shefali Garg",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/posts/",
+       "item": "http://localhost:54665/posts/",
        "name": "Posts",
        "position": 2
      },
@@ -612,12 +612,41 @@
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
+        <div class="order-first px-0 lg:order-last lg:max-w-xs lg:ps-8">
+          <div class="toc pe-5 lg:sticky lg:top-10 print:hidden">
+            <details open class="-ms-5 mt-0 overflow-hidden rounded-lg ps-5">
+  <summary
+    class="block cursor-pointer bg-neutral-100 py-1 ps-5 text-lg font-semibold text-neutral-800 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div class="border-s border-dotted border-neutral-300 py-2 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#best-rqs-solution">BEST-RQ’s Solution</a>
+      <ul>
+        <li><a href="#random-projection-quantizer-rpq">Random Projection Quantizer (RPQ)</a></li>
+        <li><a href="#projection-matrix">Projection matrix</a></li>
+        <li><a href="#codebook">Codebook</a></li>
+      </ul>
+    </li>
+    <li><a href="#benefits-of-this-approach">Benefits of this approach</a></li>
+    <li><a href="#further-exploration">Further Exploration</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+          </div>
+        </div>
+      
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <p>Have you ever wished your voice assistant understood you a little better? Automatic speech recognition (ASR) technology is constantly evolving, but achieving high accuracy can be complex. Today, we’ll explore a new approach called <a href="https://proceedings.mlr.press/v162/chiu22a/chiu22a.pdf" target="_blank" rel="noreferrer">BEST-RQ (BERT-based Speech pre-Training with Random-projection Quantizer</a>) introduced by Google Researchers in 2023 that has made waves in the field.</p>
 <p>This innovative technique leverages the power of <a href="https://arxiv.org/abs/1810.04805" target="_blank" rel="noreferrer">BERT</a>, a popular language model, specifically adapted for speech recognition. But BEST-RQ takes it a step further by introducing a unique scalable pre-training method, allowing the model to learn effectively from vast amounts of unlabelled data, leading to significant improvements in accuracy.</p>
 <p>Intrigued? In this short blog post, we’ll break down the key concepts behind BEST-RQ and how it’s transforming speech recognition. We’ll explore how it simplifies the learning process and unlocks the potential for even more accurate and robust ASR systems in the future!</p>
-<p><strong>Problem</strong></p>
-<p>Speech recognition aims to convert spoken language into written text. Traditional methods rely on labeled data, where spoken words are paired with their corresponding written text. But this approach requires a vast amount of labeled data, which can be expensive and time-consuming to collect.</p>
+<h2 id="problem" class="relative group">Problem <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#problem" aria-label="Anchor">#</a></span></h2><p>Speech recognition aims to convert spoken language into written text. Traditional methods rely on labeled data, where spoken words are paired with their corresponding written text. But this approach requires a vast amount of labeled data, which can be expensive and time-consuming to collect.</p>
 <p><em>One common design principle of self-supervised learning for speech recognition centers around learning representations. Inspired by the success of <a href="https://arxiv.org/abs/1810.04805" target="_blank" rel="noreferrer">BERT (Devlin et al., 2018)</a>, a powerful technique in natural language processing, one research trend in the speech community is to build BERT-inspired algorithms.</em></p>
 <p>BERT is not directly applicable to speech because speech lacks these discrete tokens. We can’t directly feed the continuous speech signal into BERT, hence a need to bridge the gap between continuous speech signals and the discrete text tokens, and a solution for addressing this issue is through <strong>learning speech representation</strong>.</p>
 <p>While speech representation learning is crucial, integrating it with self-supervised learning presents two challenges.</p>
@@ -641,8 +670,7 @@ The misaligned objectives and intricate design process for these combined algori
 </figure>
 </em><br>
 Occam’s Razor for ML: Simplest solution often wins [<a href="https://www.vecteezy.com/vector-art/37047322-simplify-complex-process-tangled-scribble-wires-with-light-bulbs-from-difficult-to-simple-clarifying-idea-and-complex-problem-solving-process-vector-concept" target="_blank" rel="noreferrer">Ref. Image</a>]</p>
-<p><strong>BEST-RQ’s Solution</strong></p>
-<p><em>BEST-RQ tackles the above problem by offering a compelling alternative. It introduces a novel technique of self-supervised training using a combination of Random Projection Quantizer (RPQ) and Masked Language Modeling (MLM).</em></p>
+<h2 id="best-rqs-solution" class="relative group">BEST-RQ’s Solution <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#best-rqs-solution" aria-label="Anchor">#</a></span></h2><p><em>BEST-RQ tackles the above problem by offering a compelling alternative. It introduces a novel technique of self-supervised training using a combination of Random Projection Quantizer (RPQ) and Masked Language Modeling (MLM).</em></p>
 <p><em>
 
 
@@ -656,16 +684,13 @@ Occam’s Razor for ML: Simplest solution often wins [<a href="https://www.vecte
 </figure>
 </em><br>
 Fig 1: Overview of BEST-RQ. The approach applies random projections to project the input speech signals to a randomly initialized codebook, and map them to discrete labels through finding the nearest vector in the codebook. The pre-training objective is for the ASR encoder to take the masked input signals and predict the labels corresponding to the masked part provided by the random-projection quantizer. Figure taken from Ref. [1]</p>
-<p><em><strong>Random Projection Quantizer (RPQ)</strong></em></p>
-<p>This is the heart of BEST-RQ and is the core innovation that bridges the gap between continuous speech and the discrete world BERT thrives in. RPQ has two key components - <strong>Projection matrix</strong> and <strong>Codebook</strong> both randomly initialized and <strong>not</strong> updated during training.</p>
-<p><strong>Projection matrix</strong></p>
-<p>This projects the speech features (numerical representation of speech) into a lower dimension. The framework is described in Figure 1. This matrix is of size d x k, where:</p>
+<h3 id="random-projection-quantizer-rpq" class="relative group">Random Projection Quantizer (RPQ) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#random-projection-quantizer-rpq" aria-label="Anchor">#</a></span></h3><p>This is the heart of BEST-RQ and is the core innovation that bridges the gap between continuous speech and the discrete world BERT thrives in. RPQ has two key components - <strong>Projection matrix</strong> and <strong>Codebook</strong> both randomly initialized and <strong>not</strong> updated during training.</p>
+<h3 id="projection-matrix" class="relative group">Projection matrix <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#projection-matrix" aria-label="Anchor">#</a></span></h3><p>This projects the speech features (numerical representation of speech) into a lower dimension. The framework is described in Figure 1. This matrix is of size d x k, where:</p>
 <ul>
 <li>d is the dimensionality of the original speech features (typically high, like hundreds or thousands).</li>
 <li>k is the target dimensionality after projection (usually much lower than d).</li>
 </ul>
-<p><strong>Codebook</strong></p>
-<ul>
+<h3 id="codebook" class="relative group">Codebook <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#codebook" aria-label="Anchor">#</a></span></h3><ul>
 <li>To put simply, this is a collection of n code vectors, each of size k. These vectors represent the discrete code space.</li>
 <li>The size n of the codebook is a hyper parameter that can be tuned based on the specific task and dataset.</li>
 </ul>
@@ -699,8 +724,7 @@ The pre-training process adds a softmax layer on top of the ASR encoder to learn
 <p><em><strong>Key Point: Frozen and Independent RPQ</strong></em></p>
 <p>Unlike other self-supervised methods, RPQ (projection matrix and codebook) is randomly initialized and <strong>not</strong> trained during the process. This removes the need for the model to learn the intricacies of the codebook, allowing it to focus solely on capturing meaningful speech representations.</p>
 <p><em>Since the random-projection quantizer is independent of the ASR encoder, the pre-training is flexible and can work with different architectures of the ASR encoder.</em></p>
-<p><strong>Benefits of this approach:</strong></p>
-<ol>
+<h2 id="benefits-of-this-approach" class="relative group">Benefits of this approach <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#benefits-of-this-approach" aria-label="Anchor">#</a></span></h2><ol>
 <li><em><strong>Performance</strong></em><br>
 BEST-RQ achieves competitive results compared to other methods, even with lower latency for real-time applications.<br>
 This approach shows similar WERs as the existing state-of-the-art results on <a href="https://www.openslr.org/12" target="_blank" rel="noreferrer">LibriSpeech</a> with non-streaming models, and <strong>outperform</strong> <a href="https://arxiv.org/abs/2006.11477" target="_blank" rel="noreferrer">wav2vec 2.0</a> and <a href="https://arxiv.org/abs/2108.06209" target="_blank" rel="noreferrer">w2vBERT</a> on LibriSpeech with streaming models and on multilingual tasks with non-streaming models.<br>
@@ -714,14 +738,12 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
 <p><em>Here’s an analogy: Imagine you’re lost in a giant forest (high-dimensional speech data) and need to find a specific landmark (desired speech representation).</em></p>
 <p><em><strong>Traditional methods:</strong> You meticulously learn the entire forest layout (complex representation learning) to navigate and find the landmark.</em></p>
 <p><em><strong>BEST-RQ approach:</strong> You’re given a helicopter (random projection matrix) that takes you high above the forest (lower dimension) and a pre-defined map (codebook) with landmarks marked. You simply find the location that looks most similar to your current view (nearest codebook vector) — faster and with less effort!</em></p>
-<p><strong>Further Exploration:</strong></p>
-<ol>
+<h2 id="further-exploration" class="relative group">Further Exploration <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#further-exploration" aria-label="Anchor">#</a></span></h2><ol>
 <li>Research is ongoing to understand how well RPQ captures speech information compared to learned quantizers.</li>
 <li>Exploring different types of quantizers and experiment designs might yield further improvements.</li>
 </ol>
 <p>Thank you very much for reading this and I hope I was able to clarify a few notions to the people who are just starting to get into Speech Models Pre-training World. Please feel free to suggest edits if you find any mistakes !</p>
-<p><strong>References:</strong></p>
-<ol>
+<h2 id="references" class="relative group">References <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#references" aria-label="Anchor">#</a></span></h2><ol>
 <li><a href="https://proceedings.mlr.press/v162/chiu22a/chiu22a.pdf" target="_blank" rel="noreferrer"><em>Self-Supervised Learning with Random-Projection Quantizer for Speech Recognition by Chung-Cheng Chiu, James Qin, Yu Zhang, Jiahui Yu &amp; Yonghui Wu.</em></a></li>
 <li><a href="https://arxiv.org/abs/1810.04805" target="_blank" rel="noreferrer"><em>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding by Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova.</em></a></li>
 <li><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noreferrer"><em>Attention Is All You Need by Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin</em></a></li>
@@ -855,7 +877,7 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/bestrq/&amp;quote=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
+          href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:54665/posts/bestrq/&amp;quote=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
           title="Share on Facebook"
           aria-label="Share on Facebook"
           target="_blank"
@@ -868,7 +890,7 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://twitter.com/intent/tweet/?url=http://localhost:1313/posts/bestrq/&amp;text=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
+          href="https://twitter.com/intent/tweet/?url=http://localhost:54665/posts/bestrq/&amp;text=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
           title="Tweet on Twitter"
           aria-label="Tweet on Twitter"
           target="_blank"
@@ -881,7 +903,7 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://reddit.com/submit/?url=http://localhost:1313/posts/bestrq/&amp;resubmit=true&amp;title=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
+          href="https://reddit.com/submit/?url=http://localhost:54665/posts/bestrq/&amp;resubmit=true&amp;title=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
           title="Submit to Reddit"
           aria-label="Submit to Reddit"
           target="_blank"
@@ -894,7 +916,7 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/posts/bestrq/&amp;title=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:54665/posts/bestrq/&amp;title=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
           title="Share on LinkedIn"
           aria-label="Share on LinkedIn"
           target="_blank"
@@ -907,7 +929,7 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="mailto:?body=http://localhost:1313/posts/bestrq/&amp;subject=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
+          href="mailto:?body=http://localhost:54665/posts/bestrq/&amp;subject=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
           title="Send via email"
           aria-label="Send via email"
           target="_blank"
@@ -1037,7 +1059,7 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/"
+  data-url="http://localhost:54665/"
 >
   <div
     id="search-modal"

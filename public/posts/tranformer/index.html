@@ -10,9 +10,9 @@
   lang="en-US"
   dir="ltr"
   class="scroll-smooth"
-  data-default-appearance="dark"
-  data-auto-appearance="true"
-><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  data-default-appearance="light"
+  data-auto-appearance="false"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=54665&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
@@ -84,7 +84,7 @@
   
   
   
-  <link rel="canonical" href="http://localhost:1313/posts/tranformer/" />
+  <link rel="canonical" href="http://localhost:54665/posts/tranformer/" />
   
   
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -99,7 +99,7 @@
   
   
   
-  <meta property="og:url" content="http://localhost:1313/posts/tranformer/">
+  <meta property="og:url" content="http://localhost:54665/posts/tranformer/">
   <meta property="og:site_name" content="Shefali Garg">
   <meta property="og:title" content="Transformers and Attention: The Backbone of LLMs">
   <meta property="og:description" content="This article explores Transformers and Attention, two concepts that form the core of modern Large Language Models (LLMs).">
@@ -128,7 +128,7 @@
     "description": "This article explores Transformers and Attention, two concepts that form the core of modern Large Language Models (LLMs).",
     
     "inLanguage": "en-US",
-    "url" : "http:\/\/localhost:1313\/posts\/tranformer\/",
+    "url" : "http:\/\/localhost:54665\/posts\/tranformer\/",
     "author" : {
       "@type": "Person",
       "name": "Shefali Garg"
@@ -142,7 +142,7 @@
     "keywords": ["LLM","AI","NLP"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1304"
+    "wordCount": "1302"
   }
   </script>
     
@@ -153,13 +153,13 @@
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/",
+       "item": "http://localhost:54665/",
        "name": "Shefali Garg",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:1313/posts/",
+       "item": "http://localhost:54665/posts/",
        "name": "Posts",
        "position": 2
      },
@@ -560,17 +560,17 @@
   <ul>
     <li><a href="#what-is-language-modeling">What is Language Modeling?</a>
       <ul>
-        <li><a href="#reading-recommendations-">Reading Recommendations :</a></li>
-        <li><a href="#research-papers-">Research Papers :</a></li>
+        <li><a href="#reading-recommendations">Reading Recommendations</a></li>
+        <li><a href="#research-papers">Research Papers</a></li>
       </ul>
     </li>
     <li><a href="#what-are-transformers-and-attention-">What are Transformers And Attention ?</a>
       <ul>
-        <li><a href="#reading-recommendations">Reading Recommendations:</a></li>
-        <li><a href="#other-referencesresources">Other References/Resources:</a></li>
+        <li><a href="#reading-recommendations-1">Reading Recommendations</a></li>
+        <li><a href="#other-referencesresources">Other References/Resources</a></li>
       </ul>
     </li>
-    <li><a href="#wrapping-up">Wrapping Up:</a></li>
+    <li><a href="#wrapping-up">Wrapping Up</a></li>
   </ul>
 </nav>
   </div>
@@ -581,7 +581,7 @@
       
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <h1 id="topic-1-transformers-and-attention--the-backbone-of-llms" class="relative group">Topic 1: Transformers and Attention – The Backbone of LLMs <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#topic-1-transformers-and-attention--the-backbone-of-llms" aria-label="Anchor">#</a></span></h1><p>Welcome to the first deep dive in the series! In this topic, we&rsquo;ll explore <strong>Transformers and Attention</strong>, two concepts that form the core of modern Large Language Models (LLMs) like Gemini and GPT. But before we dive into this, it’s important to have a basic understanding of <strong>Machine Learning</strong> and <strong>Deep Learning</strong> concepts. If you&rsquo;re new to these topics, don’t worry! You can check out these excellent courses to build foundational knowledge.</p>
-<p><strong>Course Recommendations:</strong></p>
+<p><strong>Course Recommendations</strong></p>
 <ol>
 <li><a href="https://www.coursera.org/specializations/machine-learning-introduction" target="_blank" rel="noreferrer"><strong>Machine Learning Specialization (Stanford &amp; DeepLearning.AI) | Coursera</strong></a> <strong>-</strong> A beginner-friendly, 3-course program by AI visionary Andrew Ng for fundamental AI and ML concepts.</li>
 <li><a href="https://www.coursera.org/specializations/deep-learning" target="_blank" rel="noreferrer"><strong>DeepLearning.AI’s Deep Learning Specialization on Coursera</strong></a> – A comprehensive and Intermediate level- series to get you up to speed with the basics of deep learning with neural nets.</li>
@@ -595,12 +595,12 @@
 </ul>
 <p>Language models are widely used in many NLP tasks, Text Generation and Summarization, Machine Translation etc. Traditional language models, like <a href="https://en.wikipedia.org/wiki/Word_n-gram_language_model" target="_blank" rel="noreferrer"><strong>n-gram models</strong></a>, used simple statistical methods to predict the next word based on the preceding ones. However, modern deep learning-based language models use more powerful neural networks to learn more complex patterns and relationships within the language.</p>
 <p>Before Transformers, models like <strong>Recurrent Neural Networks (RNNs)</strong> and <strong>Long Short-Term Memory (LSTM)</strong> networks were used for sequence processing. RNNs and LSTMs processed text one token at a time, maintaining a memory of previous tokens. However, they struggled with long-range dependencies, as their memory faded over long sequences, making it difficult to capture relationships in complex texts.</p>
-<h3 id="reading-recommendations-" class="relative group">Reading Recommendations : <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#reading-recommendations-" aria-label="Anchor">#</a></span></h3><ol>
+<h3 id="reading-recommendations" class="relative group">Reading Recommendations <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#reading-recommendations" aria-label="Anchor">#</a></span></h3><ol>
 <li>Excellent Blog for understanding LSTMs: <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noreferrer">https://colah.github.io/posts/2015-08-Understanding-LSTMs/</a></li>
 <li>Why LSTM/RNN Fail: <a href="https://towardsdatascience.com/the-fall-of-rnn-lstm-2d1594c74ce0" target="_blank" rel="noreferrer">https://towardsdatascience.com/the-fall-of-rnn-lstm-2d1594c74ce0</a></li>
 <li>Sequence to Sequence Models: <a href="https://towardsdatascience.com/understanding-encoder-decoder-sequence-to-sequence-model-679e04af4346" target="_blank" rel="noreferrer">Understanding Encoder-Decoder Sequence to Sequence Model | by Simeon Kostadinov | Towards Data Science</a></li>
 </ol>
-<h3 id="research-papers-" class="relative group">Research Papers : <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#research-papers-" aria-label="Anchor">#</a></span></h3><ol>
+<h3 id="research-papers" class="relative group">Research Papers <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#research-papers" aria-label="Anchor">#</a></span></h3><ol>
 <li><a href="https://arxiv.org/abs/1409.3215" target="_blank" rel="noreferrer">[1409.3215] Sequence to Sequence Learning with Neural Networks</a></li>
 </ol>
 <p>The <strong>Transformer</strong> architecture solves this by utilizing <strong>attention mechanisms</strong> to enable parallel processing of data and capturing dependencies regardless of their distance in a sequence.</p>
@@ -744,18 +744,18 @@ Figure 2 : One word &ldquo;attends&rdquo; to other words in the same sentence di
 </ol>
 </li>
 </ol>
-<h3 id="reading-recommendations" class="relative group">Reading Recommendations: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#reading-recommendations" aria-label="Anchor">#</a></span></h3><ol>
+<h3 id="reading-recommendations-1" class="relative group">Reading Recommendations <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#reading-recommendations-1" aria-label="Anchor">#</a></span></h3><ol>
 <li>I highly encourage this blog to anyone who wants to understand transformers and attention in the most simplified manner.  It beautifully explains all the above concepts visually. <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noreferrer">The Illustrated Transformer – Jay Alammar</a></li>
 <li>Youtube Video for the same: <a href="https://www.youtube.com/watch?v=-QH8fRhqFHM" target="_blank" rel="noreferrer">https://www.youtube.com/watch?v=-QH8fRhqFHM</a></li>
 <li>Transformer Paper: <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noreferrer">[1706.03762] Attention Is All You Need</a></li>
 <li><a href="https://huggingface.co/docs/transformers/en/index" target="_blank" rel="noreferrer">Hugging Face’s Course on Transformers</a> – Hands-on tutorials with practical implementation examples.</li>
 </ol>
-<h3 id="other-referencesresources" class="relative group">Other References/Resources: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#other-referencesresources" aria-label="Anchor">#</a></span></h3><ol>
+<h3 id="other-referencesresources" class="relative group">Other References/Resources <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#other-referencesresources" aria-label="Anchor">#</a></span></h3><ol>
 <li>Residual Networks: <a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noreferrer">[1512.03385] Deep Residual Learning for Image Recognition</a></li>
 <li>Layer Normalization: <a href="https://arxiv.org/abs/1607.06450" target="_blank" rel="noreferrer">[1607.06450] Layer Normalization</a></li>
 </ol>
 <hr>
-<h2 id="wrapping-up" class="relative group">Wrapping Up: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#wrapping-up" aria-label="Anchor">#</a></span></h2><ul>
+<h2 id="wrapping-up" class="relative group">Wrapping Up <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#wrapping-up" aria-label="Anchor">#</a></span></h2><ul>
 <li>Transformers revolutionized large language models (LLMs) and AI with the introduction of the <strong>self-attention mechanism</strong>, allowing models to effectively capture long-range dependencies and contextual relationships across entire sequences.</li>
 <li>Unlike RNNs and LSTMs, Transformers process data in <strong>parallel</strong>, significantly enhancing scalability and training speed.</li>
 <li>The architecture supports <strong>massive pretraining</strong> on diverse datasets, followed by fine-tuning for specific tasks, enabling powerful <strong>transfer learning capabilities</strong>.</li>
@@ -891,7 +891,7 @@ Figure 2 : One word &ldquo;attends&rdquo; to other words in the same sentence di
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/tranformer/&amp;quote=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
+          href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:54665/posts/tranformer/&amp;quote=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
           title="Share on Facebook"
           aria-label="Share on Facebook"
           target="_blank"
@@ -904,7 +904,7 @@ Figure 2 : One word &ldquo;attends&rdquo; to other words in the same sentence di
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://twitter.com/intent/tweet/?url=http://localhost:1313/posts/tranformer/&amp;text=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
+          href="https://twitter.com/intent/tweet/?url=http://localhost:54665/posts/tranformer/&amp;text=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
           title="Tweet on Twitter"
           aria-label="Tweet on Twitter"
           target="_blank"
@@ -917,7 +917,7 @@ Figure 2 : One word &ldquo;attends&rdquo; to other words in the same sentence di
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://reddit.com/submit/?url=http://localhost:1313/posts/tranformer/&amp;resubmit=true&amp;title=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
+          href="https://reddit.com/submit/?url=http://localhost:54665/posts/tranformer/&amp;resubmit=true&amp;title=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
           title="Submit to Reddit"
           aria-label="Submit to Reddit"
           target="_blank"
@@ -930,7 +930,7 @@ Figure 2 : One word &ldquo;attends&rdquo; to other words in the same sentence di
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/posts/tranformer/&amp;title=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:54665/posts/tranformer/&amp;title=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
           title="Share on LinkedIn"
           aria-label="Share on LinkedIn"
           target="_blank"
@@ -943,7 +943,7 @@ Figure 2 : One word &ldquo;attends&rdquo; to other words in the same sentence di
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="mailto:?body=http://localhost:1313/posts/tranformer/&amp;subject=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
+          href="mailto:?body=http://localhost:54665/posts/tranformer/&amp;subject=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
           title="Send via email"
           aria-label="Send via email"
           target="_blank"
@@ -1073,7 +1073,7 @@ Figure 2 : One word &ldquo;attends&rdquo; to other words in the same sentence di
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/"
+  data-url="http://localhost:54665/"
 >
   <div
     id="search-modal"

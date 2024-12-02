@@ -10,7 +10,7 @@ tags: ["LLM", "AI", "NLP"]
 
 Welcome to the first deep dive in the series\! In this topic, we'll explore **Transformers and Attention**, two concepts that form the core of modern Large Language Models (LLMs) like Gemini and GPT. But before we dive into this, it’s important to have a basic understanding of **Machine Learning** and **Deep Learning** concepts. If you're new to these topics, don’t worry\! You can check out these excellent courses to build foundational knowledge.
 
-**Course Recommendations:** 
+**Course Recommendations** 
 1. [**Machine Learning Specialization (Stanford & DeepLearning.AI) | Coursera**](https://www.coursera.org/specializations/machine-learning-introduction) **\-** A beginner-friendly, 3-course program by AI visionary Andrew Ng for fundamental AI and ML concepts.  
 2. [**DeepLearning.AI’s Deep Learning Specialization on Coursera**](https://www.coursera.org/specializations/deep-learning) – A comprehensive and Intermediate level- series to get you up to speed with the basics of deep learning with neural nets.
 
@@ -28,13 +28,13 @@ Language models are widely used in many NLP tasks, Text Generation and Summariza
 
 Before Transformers, models like **Recurrent Neural Networks (RNNs)** and **Long Short-Term Memory (LSTM)** networks were used for sequence processing. RNNs and LSTMs processed text one token at a time, maintaining a memory of previous tokens. However, they struggled with long-range dependencies, as their memory faded over long sequences, making it difficult to capture relationships in complex texts.
 
-### Reading Recommendations :
+### Reading Recommendations
 
 1. Excellent Blog for understanding LSTMs: [https://colah.github.io/posts/2015-08-Understanding-LSTMs/](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)  
 2. Why LSTM/RNN Fail: [https://towardsdatascience.com/the-fall-of-rnn-lstm-2d1594c74ce0](https://towardsdatascience.com/the-fall-of-rnn-lstm-2d1594c74ce0)  
 3. Sequence to Sequence Models: [Understanding Encoder-Decoder Sequence to Sequence Model | by Simeon Kostadinov | Towards Data Science](https://towardsdatascience.com/understanding-encoder-decoder-sequence-to-sequence-model-679e04af4346)
 
-### Research Papers :
+### Research Papers
 
 1. [\[1409.3215\] Sequence to Sequence Learning with Neural Networks](https://arxiv.org/abs/1409.3215)
 
@@ -82,14 +82,14 @@ Don’t worry about the complex diagram above, and I don’t expect you to be fa
 4. **Output Layer**:   
    1. An Output Layer, such as the Softmax layer, produces the final predictions of the model,converting the computed values into probabilities for tasks like classification or generating text.
 
-### Reading Recommendations:
+### Reading Recommendations
 
 1. I highly encourage this blog to anyone who wants to understand transformers and attention in the most simplified manner.  It beautifully explains all the above concepts visually. [The Illustrated Transformer – Jay Alammar](https://jalammar.github.io/illustrated-transformer/)   
 2. Youtube Video for the same: [https://www.youtube.com/watch?v=-QH8fRhqFHM](https://www.youtube.com/watch?v=-QH8fRhqFHM)  
 3. Transformer Paper: [\[1706.03762\] Attention Is All You Need](https://arxiv.org/abs/1706.03762)  
 4. [Hugging Face’s Course on Transformers](https://huggingface.co/docs/transformers/en/index) – Hands-on tutorials with practical implementation examples.
 
-### Other References/Resources:
+### Other References/Resources
 
 1. Residual Networks: [\[1512.03385\] Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)  
 2. Layer Normalization: [\[1607.06450\] Layer Normalization](https://arxiv.org/abs/1607.06450)
@@ -97,7 +97,7 @@ Don’t worry about the complex diagram above, and I don’t expect you to be fa
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
-## Wrapping Up:
+## Wrapping Up
 
 * Transformers revolutionized large language models (LLMs) and AI with the introduction of the **self-attention mechanism**, allowing models to effectively capture long-range dependencies and contextual relationships across entire sequences.  
 * Unlike RNNs and LSTMs, Transformers process data in **parallel**, significantly enhancing scalability and training speed.  

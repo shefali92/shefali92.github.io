@@ -14,5 +14,3 @@ In parallel with her [research](/research/), she writes about topics related to 
 In her spare time, she loves playing sports, particularly basketball and badminton and also expressing herself through [painting](/meta/art/).
 
 All opinions shared here are her own and don’t represent her employer.
-
-For any questions or inquiries, feel free to reach out via [email](mailto:shefaligrg92@gmail.com) :envelope:

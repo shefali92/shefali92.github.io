@@ -11,7 +11,7 @@ This innovative technique leverages the power of [BERT](https://arxiv.org/abs/18
 
 Intrigued? In this short blog post, we’ll break down the key concepts behind BEST-RQ and how it’s transforming speech recognition. We’ll explore how it simplifies the learning process and unlocks the potential for even more accurate and robust ASR systems in the future\!
 
-**Problem**
+## Problem
 
 Speech recognition aims to convert spoken language into written text. Traditional methods rely on labeled data, where spoken words are paired with their corresponding written text. But this approach requires a vast amount of labeled data, which can be expensive and time-consuming to collect.
 
@@ -31,25 +31,25 @@ While speech representation learning is crucial, integrating it with self-superv
 *![][image1]*  
 Occam’s Razor for ML: Simplest solution often wins \[[Ref. Image](https://www.vecteezy.com/vector-art/37047322-simplify-complex-process-tangled-scribble-wires-with-light-bulbs-from-difficult-to-simple-clarifying-idea-and-complex-problem-solving-process-vector-concept)\]
 
-**BEST-RQ’s Solution**
+## BEST-RQ’s Solution
 
 *BEST-RQ tackles the above problem by offering a compelling alternative. It introduces a novel technique of self-supervised training using a combination of Random Projection Quantizer (RPQ) and Masked Language Modeling (MLM).*
 
 *![][image2]*  
 Fig 1: Overview of BEST-RQ. The approach applies random projections to project the input speech signals to a randomly initialized codebook, and map them to discrete labels through finding the nearest vector in the codebook. The pre-training objective is for the ASR encoder to take the masked input signals and predict the labels corresponding to the masked part provided by the random-projection quantizer. Figure taken from Ref. \[1\]
 
-***Random Projection Quantizer (RPQ)***
+### Random Projection Quantizer (RPQ)
 
 This is the heart of BEST-RQ and is the core innovation that bridges the gap between continuous speech and the discrete world BERT thrives in. RPQ has two key components \- **Projection matrix** and **Codebook** both randomly initialized and **not** updated during training.
 
-**Projection matrix**
+### Projection matrix
 
 This projects the speech features (numerical representation of speech) into a lower dimension. The framework is described in Figure 1\. This matrix is of size d x k, where:
 
 * d is the dimensionality of the original speech features (typically high, like hundreds or thousands).  
 * k is the target dimensionality after projection (usually much lower than d).
 
-**Codebook**
+### Codebook
 
 * To put simply, this is a collection of n code vectors, each of size k. These vectors represent the discrete code space.  
 * The size n of the codebook is a hyper parameter that can be tuned based on the specific task and dataset.
@@ -86,7 +86,7 @@ Unlike other self-supervised methods, RPQ (projection matrix and codebook) is ra
 
 *Since the random-projection quantizer is independent of the ASR encoder, the pre-training is flexible and can work with different architectures of the ASR encoder.*
 
-**Benefits of this approach:**
+## Benefits of this approach
 
 1. ***Performance***  
    BEST-RQ achieves competitive results compared to other methods, even with lower latency for real-time applications.  
@@ -104,14 +104,14 @@ Unlike other self-supervised methods, RPQ (projection matrix and codebook) is ra
 
 ***BEST-RQ approach:** You’re given a helicopter (random projection matrix) that takes you high above the forest (lower dimension) and a pre-defined map (codebook) with landmarks marked. You simply find the location that looks most similar to your current view (nearest codebook vector) — faster and with less effort\!*
 
-**Further Exploration:**
+## Further Exploration
 
 1. Research is ongoing to understand how well RPQ captures speech information compared to learned quantizers.  
 2. Exploring different types of quantizers and experiment designs might yield further improvements.
 
 Thank you very much for reading this and I hope I was able to clarify a few notions to the people who are just starting to get into Speech Models Pre-training World. Please feel free to suggest edits if you find any mistakes \!
 
-**References:**
+## References
 
 1. [*Self-Supervised Learning with Random-Projection Quantizer for Speech Recognition by Chung-Cheng Chiu, James Qin, Yu Zhang, Jiahui Yu & Yonghui Wu.*](https://proceedings.mlr.press/v162/chiu22a/chiu22a.pdf)  
 2. [*BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding by Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova.*](https://arxiv.org/abs/1810.04805)  
