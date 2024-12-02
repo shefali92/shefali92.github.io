@@ -1,0 +1,1115 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-US"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Transformers and Attention: The Backbone of LLMs &middot; Shefali Garg</title>
+    <meta name="title" content="Transformers and Attention: The Backbone of LLMs &middot; Shefali Garg" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.b0785c8131a75f72b211435af86269eb2d4b81dda03a8f2cf5ccb1c967747167.css"
+    integrity="sha256-sHhcgTGnX3KyEUNa&#43;GJp6y1Lgd2gOo8s9cyxyWd0cWc="
+  />
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+  
+  
+    
+    
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.f64817246a3814fe8ac69eaa744f58dafd97df187e7f28274423d3de185d4625.js"
+      integrity="sha256-9kgXJGo4FP6Kxp6qdE9Y2v2X3xh&#43;fygnRCPT3hhdRiU="
+      data-copy="Copy"
+      data-copied="Copied"
+    ></script>
+  
+  
+  <meta
+    name="description"
+    content="
+      This article explores Transformers and Attention, two concepts that form the core of modern Large Language Models (LLMs).
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="http://localhost:1313/posts/tranformer/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/tranformer/">
+  <meta property="og:site_name" content="Shefali Garg">
+  <meta property="og:title" content="Transformers and Attention: The Backbone of LLMs">
+  <meta property="og:description" content="This article explores Transformers and Attention, two concepts that form the core of modern Large Language Models (LLMs).">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-11-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-11-25T00:00:00+00:00">
+    <meta property="article:tag" content="LLM">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="NLP">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Transformers and Attention: The Backbone of LLMs">
+  <meta name="twitter:description" content="This article explores Transformers and Attention, two concepts that form the core of modern Large Language Models (LLMs).">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Transformers and Attention: The Backbone of LLMs",
+    "headline": "Transformers and Attention: The Backbone of LLMs",
+    "description": "This article explores Transformers and Attention, two concepts that form the core of modern Large Language Models (LLMs).",
+    
+    "inLanguage": "en-US",
+    "url" : "http:\/\/localhost:1313\/posts\/tranformer\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Shefali Garg"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-11-25T00:00:00\u002b00:00",
+    "datePublished": "2024-11-25T00:00:00\u002b00:00",
+    
+    "dateModified": "2024-11-25T00:00:00\u002b00:00",
+    
+    "keywords": ["LLM","AI","NLP"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1304"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Shefali Garg",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "name": "Transformers and Attention the Backbone of Llms",
+       "position": 3
+     }
+   ]
+ }
+  </script>
+
+  
+  <meta name="author" content="Shefali Garg" />
+  
+    
+      <link href="https://github.com/shefali92" rel="me" />
+    
+      <link href="https://www.linkedin.com/in/gargshefali/" rel="me" />
+    
+      <link href="https://www.researchgate.net/profile/Shefali-Garg" rel="me" />
+    
+      <link href="https://scholar.google.com/citations?user=dSj98N4AAAAJ&amp;hl=en" rel="me" />
+    
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="z-40 flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Shefali Garg</a
+  >
+
+    </div>
+    
+      
+      <label id="menu-button" for="menu-controller" class="block sm:hidden">
+        <input type="checkbox" id="menu-controller" class="hidden" />
+        <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+          <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+        </div>
+        <div
+          id="menu-wrapper"
+          class="invisible fixed inset-0 z-30 m-auto h-full w-full cursor-default overflow-auto bg-neutral-100/50 opacity-0 backdrop-blur-sm transition-opacity dark:bg-neutral-900/50"
+        >
+          <ul
+            class="mx-auto flex w-full max-w-7xl list-none flex-col overflow-visible px-6 py-6 text-end sm:px-14 sm:py-10 sm:pt-10 md:px-24 lg:px-32"
+          >
+            <li class="mb-1">
+              <span class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400"
+                ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span></span
+              >
+            </li>
+            
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/research/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >Research</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/posts"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >Blog: AI/ML</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/meta/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >Blog: Misc</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/about/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >About</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                  
+              
+                <li class="group mb-1">
+                  <button id="search-button-m0" title="Search (/)">
+                    <span
+                      class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                    >
+                      <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+                    </span>
+                  </button>
+                </li>
+              
+            
+          </ul>
+        </div>
+      </label>
+      
+      <ul class="hidden list-none flex-row text-end sm:flex">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/research/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Research</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/posts"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog: AI/ML</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/meta/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog: Misc</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/about/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >About</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+              
+          
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              <button id="search-button-m1" title="Search (/)">
+                <span
+                  class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                >
+                  <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+                </span>
+              </button>
+            </li>
+          
+
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+        <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="hidden inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="/"
+      >Shefali Garg</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class=" inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="/posts/"
+      >Posts</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="hidden inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="/posts/tranformer/"
+      >Transformers and Attention: The Backbone of LLMs</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Transformers and Attention: The Backbone of LLMs
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2024-11-25 00:00:00 &#43;0000 UTC">25 November 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">7 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+    <div class="my-1 flex flex-wrap text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
+      
+        
+          
+            <a
+              href="/tags/llm/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >LLM</a
+            >
+          
+            <a
+              href="/tags/ai/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >AI</a
+            >
+          
+            <a
+              href="/tags/nlp/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >NLP</a
+            >
+          
+        
+      
+    </div>
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+        <div class="order-first px-0 lg:order-last lg:max-w-xs lg:ps-8">
+          <div class="toc pe-5 lg:sticky lg:top-10 print:hidden">
+            <details open class="-ms-5 mt-0 overflow-hidden rounded-lg ps-5">
+  <summary
+    class="block cursor-pointer bg-neutral-100 py-1 ps-5 text-lg font-semibold text-neutral-800 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div class="border-s border-dotted border-neutral-300 py-2 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-language-modeling">What is Language Modeling?</a>
+      <ul>
+        <li><a href="#reading-recommendations-">Reading Recommendations :</a></li>
+        <li><a href="#research-papers-">Research Papers :</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-are-transformers-and-attention-">What are Transformers And Attention ?</a>
+      <ul>
+        <li><a href="#reading-recommendations">Reading Recommendations:</a></li>
+        <li><a href="#other-referencesresources">Other References/Resources:</a></li>
+      </ul>
+    </li>
+    <li><a href="#wrapping-up">Wrapping Up:</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+          </div>
+        </div>
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <h1 id="topic-1-transformers-and-attention--the-backbone-of-llms" class="relative group">Topic 1: Transformers and Attention – The Backbone of LLMs <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#topic-1-transformers-and-attention--the-backbone-of-llms" aria-label="Anchor">#</a></span></h1><p>Welcome to the first deep dive in the series! In this topic, we&rsquo;ll explore <strong>Transformers and Attention</strong>, two concepts that form the core of modern Large Language Models (LLMs) like Gemini and GPT. But before we dive into this, it’s important to have a basic understanding of <strong>Machine Learning</strong> and <strong>Deep Learning</strong> concepts. If you&rsquo;re new to these topics, don’t worry! You can check out these excellent courses to build foundational knowledge.</p>
+<p><strong>Course Recommendations:</strong></p>
+<ol>
+<li><a href="https://www.coursera.org/specializations/machine-learning-introduction" target="_blank" rel="noreferrer"><strong>Machine Learning Specialization (Stanford &amp; DeepLearning.AI) | Coursera</strong></a> <strong>-</strong> A beginner-friendly, 3-course program by AI visionary Andrew Ng for fundamental AI and ML concepts.</li>
+<li><a href="https://www.coursera.org/specializations/deep-learning" target="_blank" rel="noreferrer"><strong>DeepLearning.AI’s Deep Learning Specialization on Coursera</strong></a> – A comprehensive and Intermediate level- series to get you up to speed with the basics of deep learning with neural nets.</li>
+</ol>
+<hr>
+<h2 id="what-is-language-modeling" class="relative group">What is Language Modeling? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-is-language-modeling" aria-label="Anchor">#</a></span></h2><p><strong>Language modeling</strong> is the task of predicting the next word or sequence of words in a sentence based on the preceding context. It involves understanding the structure, grammar, and meaning of language, which enables a model to generate coherent and contextually appropriate text. Language models are trained on large corpora of text and learn the statistical relationships between words or tokens, which allows them to predict how likely a word is to appear next in a sequence.</p>
+<p>The model generates text by considering previous words (or tokens) and using that context to generate the next word, phrase, or sentence. For example:</p>
+<ul>
+<li><strong>Context:</strong> &ldquo;The weather today is&rdquo;</li>
+<li><strong>Prediction:</strong> &ldquo;sunny&rdquo; (or any other word that fits based on the model’s training)</li>
+</ul>
+<p>Language models are widely used in many NLP tasks, Text Generation and Summarization, Machine Translation etc. Traditional language models, like <a href="https://en.wikipedia.org/wiki/Word_n-gram_language_model" target="_blank" rel="noreferrer"><strong>n-gram models</strong></a>, used simple statistical methods to predict the next word based on the preceding ones. However, modern deep learning-based language models use more powerful neural networks to learn more complex patterns and relationships within the language.</p>
+<p>Before Transformers, models like <strong>Recurrent Neural Networks (RNNs)</strong> and <strong>Long Short-Term Memory (LSTM)</strong> networks were used for sequence processing. RNNs and LSTMs processed text one token at a time, maintaining a memory of previous tokens. However, they struggled with long-range dependencies, as their memory faded over long sequences, making it difficult to capture relationships in complex texts.</p>
+<h3 id="reading-recommendations-" class="relative group">Reading Recommendations : <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#reading-recommendations-" aria-label="Anchor">#</a></span></h3><ol>
+<li>Excellent Blog for understanding LSTMs: <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noreferrer">https://colah.github.io/posts/2015-08-Understanding-LSTMs/</a></li>
+<li>Why LSTM/RNN Fail: <a href="https://towardsdatascience.com/the-fall-of-rnn-lstm-2d1594c74ce0" target="_blank" rel="noreferrer">https://towardsdatascience.com/the-fall-of-rnn-lstm-2d1594c74ce0</a></li>
+<li>Sequence to Sequence Models: <a href="https://towardsdatascience.com/understanding-encoder-decoder-sequence-to-sequence-model-679e04af4346" target="_blank" rel="noreferrer">Understanding Encoder-Decoder Sequence to Sequence Model | by Simeon Kostadinov | Towards Data Science</a></li>
+</ol>
+<h3 id="research-papers-" class="relative group">Research Papers : <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#research-papers-" aria-label="Anchor">#</a></span></h3><ol>
+<li><a href="https://arxiv.org/abs/1409.3215" target="_blank" rel="noreferrer">[1409.3215] Sequence to Sequence Learning with Neural Networks</a></li>
+</ol>
+<p>The <strong>Transformer</strong> architecture solves this by utilizing <strong>attention mechanisms</strong> to enable parallel processing of data and capturing dependencies regardless of their distance in a sequence.</p>
+<hr>
+<h2 id="what-are-transformers-and-attention-" class="relative group">What are Transformers And Attention ? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-are-transformers-and-attention-" aria-label="Anchor">#</a></span></h2><p><strong>Transformers</strong> are the backbone of modern Natural Language Processing (NLP) and are the primary architecture behind LLMs. Introduced by Google in 2017 in the groundbreaking paper <strong>“<a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noreferrer">Attention is All You Need”</a></strong> <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noreferrer">by Vaswani et al. (2017)</a>, Transformers revolutionized the way we process sequences of data, particularly for language modeling. The Transformer architecture was initially developed for translation tasks. It is a sequence-to-sequence model designed to convert sequences from one domain to another, such as translating French sentences into English.<br>
+The original Transformer architecture (shown in Figure 1) consists of two main components: the encoder and the decoder. The encoder processes the input text (e.g., a French sentence) and transforms it into a numerical representation. This representation is then passed to the decoder, which generates the output text (e.g., an English translation) in an autoregressive manner, meaning one word is predicted at a time based on the previously generated words.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/../assets/img/transformer_hu15075372340287801961.webp 330w,/../assets/img/transformer_hu5605382789100245164.webp 660w
+            
+              
+                ,/../assets/img/transformer_hu16729192405634639346.webp 712w
+              
+            
+            
+              
+                ,/../assets/img/transformer_hu16729192405634639346.webp 712w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="712"
+        height="914"
+        class="mx-auto my-0 rounded-md"
+        
+        loading="lazy" decoding="async"
+        
+          src="/../assets/img/transformer_hu10803630154558678164.jpg"
+          srcset="/../assets/img/transformer_hu10450911734395351204.jpg 330w,/../assets/img/transformer_hu10803630154558678164.jpg 660w
+          
+            ,/../assets/img/transformer.jpg 712w
+          
+          
+            ,/../assets/img/transformer.jpg 712w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+
+<em>Figure 1 : Original Transformer Architecture</em>
+<em>(Ref: <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noreferrer">https://arxiv.org/abs/1706.03762</a>)</em></p>
+<p>Don’t worry about the complex diagram above, and I don’t expect you to be familiar with terms like multi-head attention etc., just yet. :).  I’ll break down the key components of the Transformer for you and share the best resources to explore them in depth.</p>
+<p>These are the key components of a transformer model.</p>
+<ol>
+<li>
+<p><strong>Input Embedding/Output Embedding:</strong></p>
+<ol>
+<li>Input embeddings are used to represent the input tokens (e.g., words or subwords) provided to the model, while output embeddings represent the tokens predicted by the model. For instance, in a machine translation task, the input embeddings correspond to words in the source language, and the output embeddings correspond to words in the target language.</li>
+</ol>
+</li>
+<li>
+<p><strong>Positional Encoding:</strong></p>
+<ol>
+<li>Since Transformers don’t process data sequentially (like RNNs), <strong>positional encoding</strong> is used to add information about the position of words in a sentence so that the model can understand the order of words.</li>
+</ol>
+</li>
+<li>
+<p><strong>Attention:  This is the place where the magic happens !</strong></p>
+<ol>
+<li>Attention allows a model to focus on the most relevant parts of the input while processing a sequence. This is crucial for understanding language because words can have relationships that extend over long distances. For example, in the sentence <strong>“The cat that chased the mouse was very fast”</strong>, attention helps the model understand that “cat” and “was” are related, even though they are far apart.</li>
+<li>The primary type of attention in Transformers is <strong>self-attention</strong>, which allows each word (or token) in a sequence to “attend” to all the other words in the sequence when making predictions. This capability enables the Transformer to capture contextual relationships at scale.<br>
+
+
+
+
+
+
+
+  
+  
+<figure><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVEAAABPCAYAAABS3fYdAAAV0klEQVR4Xu2dC1hU1b7AATUf2c1ut25&#43;X9njpp1OXrVj17dmp3yUlX5lamqmqVkdFdNT99Q5xalOlnbLV1aADxRF1BTkJcqbBAFfgCiEIr6Ql/JmBpgZ/nf&#43;a7P27L1mRoGZgRn8//zWN2v919p7j/P4sdbaa/Z2A4IgCKLVuIkBgiAIovmQRAmCIGyAJEoQBGEDJFGiw2HQ60Bb1yCGobamVgzJaDW10NgoRtsOrUbTrscnWg9JlOhwZB3yhnGLfxSiOnBzs/5xf65fDyiqqBPDt8TN/W72uPD10ZB&#43;oUyovTWd7&#43;zNHv/Q1QNuaAxCLeEKWP9UEYSLghId7/kjpCfHQmxiqhwvLrwm55Pio&#43;HosRyovFHKykyilXUQEhwCF4vK5XZKii6fg9Dwg3ClWJLl9ZIKo0S7Gnu9Onjj&#43;SchMiVbbpuWGAsh4XFy&#43;XqRdOyIAyFQdL1GipWVgkeXXqA3uvN6cREYmnqidbXl7HmUVkm9aV2DBrBjfSo1CeKSj0uNCKeBJEp0OFCiDz/cGb7&#43;JQBe6tsNFq9JAGVPtHsXd5izZDWsXvyyHEOJdu3qDoeMksRY6NGLij0CvDn2MfiPobMg63QGqw&#43;I/h0OBIcZJdoTYhIz4Lk/PQKrfHawtj27d4HX5nwKhwLWgEenTiz2lLGnidvFJcSwx6PnKiA0IhQ8uvaCjHPl0L&#43;bB1yvNUB2yBes/lRWJnRzd4MJKyIgN3k3i3mtD4B&#43;ndzhscETlU&#43;NaGdIokSHAyU6YdkGqdCogaHjpgCXaGXR7/Dkn6fJbcf37MweeU8Uid3yNXh&#43;5y&#43;3kdEDpCYeBg8Pd1izHcVsGs7PeWkQG87Xlp8Hty5Pwv6g/Sy5G0WoA0mifLju94MnfOMdxfJ8OM8lKk45uLnfyST6&#43;nufSIFGPbh5SNsQzgFJlOhwqOZEzSSaA/3GTJXbTr67C3tUzolakugDnd1h6KhnISE5HQJ/&#43;BBWb0tkcVGiFQXHjT3F5&#43;HSpUtyQlQSXbOs&#43;RJ169Qk0U&#43;lAEnU6SCJEh2Om0kUGqXH4xeKjcI7Df/uYRrOW5doI9umTtdozBrg4Ts8YPG3W1mNm3s39ogSjUkvBoOujrUtvCGtBOBStCZRj673sUcu0XEPdYMZy1ax2M9/mwe9HuhDEnVySKJEhyM3MRDmeW2WCkaJPjtpCSjnRGvKC6D3vXfB6FcWwPAe0pzlhAH3QVmNdCIHJer1c5i0fROxe39i23fp2gNOJQRD9wekKYGJT/eAwWOmwNnUSFZfYBy7F188w/KYtgVLw/6B3TtBVYN05mjnj3&#43;FdbtPsPwAo1xHvLKWSbSyHusbYfqEoWzbp8bPYm3OJ&#43;&#43;Ht//qw/Io0U53PSHlCaeAJErcVhjqq5igdHoD6Oq1ZsNngmgp9AkibjvCt6yHp57oCwMG/Q/EZxaI1QTRIkiiBEEQNkASJQiCsAGSaAeCn8ygRMmVkqvj&#43;v8DQgY/kA899JAYJgin5Nq1ayRRwrkgiRKuBEmUcDpIooQrQRIlnA6SKOFKkEQJp4MkSrgSJFHC6SCJEq4ESZRwOkiihCtBEiWcjtZINCwsTE6ctLQ0s1hCQoIcq62VrlCUm5srxxoapIt3pKeny7Hq6moWS0lJkWNarZbF8vLy5JhOh1fcBMjMzJRjpaXSFecrKyvlWF2ddJUl/PLx2LFjx1js3LlzciwnJ4fFEB4rKJB&#43;3qnRaORYYqJ0ObuSkhI5duKEdGEQ5bbK/dmLxYsXs/frdkr4OishiRJOB34gmyvRw4cPiyHiJuAfDr1eL4ZbzaRJk9j7NWbMmA6fRo0axf6vp06dUr0GJFHC6SCJOo4zZ85ATY10byR7wCV6O4C9f5Io4RKQRB0HSbT1kEQJl6ElEm0O3t7eYsguGPQNEHMqn&#43;UzkiLUlc0At486cZ7lHfUcRfA2H3w&#43;1x6QREmihBPiKhLNPBYN4SnnWL41xzhzKhZCk6WTPZpajVDrGpBESaKEE9ISiTZnOM8FlxYfyfKYAvaGGiMGua40/6gx78fy&#43;sqzsH3XPr45Y2/ANnnbTX67jZtq5XJOcVZT3pe13enna6q7It3bnZcxbdmO29fJ5XM1pudxMilaju/cE8JiZ6N2wt7gcDmurZdWATgDJFGSKOGEOEKiOm01ezQ0SvcH2uzjDceyLsKOrb6Ag9ttvpKgUE87tmyC9KvKnmEj&#43;G7eJpe48DKPR0GY0BM9EnUAfP2l56TX1ctxfNRLh5ZjZxU9UfbctGXssbHpOQZu8Ya03KuQHR0I2wJ&#43;ZbGEw0Fw8PhVaUetgOZEWw9JlHAZHCHRmsoS8NkqiQgpyPkN9h5KhorcJNjid8DYZhOkRe2GzPxrsuSU&#43;Pr6yD1BWaLHjBI9msvyPLZ/52ZVO6VEOZt8FBJNypbrq0ougbeP6e6ceWdSYNu&#43;I0yiwRFpLHbmaBz4h5yU27QUkmjrIYkSLkNLJNocUFB1NRXAh9tI8DYf&#43;O0k7wX6GIfvQVB57bwkvk275XZIo0EPfv4BvKSSqDgnGhWyGwIPpTe1NcCmzVtV9YhKooqeaENlkapd5F4/SMjIs6tECwsL5cX&#43;9oAkShIlnBBHSBQ5sHensafnC/5&#43;vuDju1VVf7oQxSIJ8mq1OOcoxQ&#43;EhkqSNSacAsjNSGL51Mt8fhRvB6wFH2N&#43;m/8u9rgr6BDbgyWJ5mWlsHjKxVq5PmRvAMvv3LbV&#43;Fy3AA7ss6MDjBJNZfVZNkrU3pBESaKEE9ISiTZnOK&#43;kob4OtNpW9MQaG0GrMV8apG/6qSeiU/wSCM&#43;2N&#43;hu/csg5facVj/HdoAkShIlnBBHSvR2h&#43;ZEWw9JlHAZSKKOgyTaekiihMvQEokSLYN&#43;sdR6SKKEy4AfVnt&#43;0QnHQRIFMBgMcOPGDVXMFbk93kXCDBrOtwxHXQrvdsCaRDsKt8e7SJhBEm0ZNCfaekiiRIeEJNoySKKthyRKEARBWIUkShAEYQMkUYIgCBuwi0RxmcKbb74JvXv3hi5dusBjjz0GH3/8sdiMMXXqVJbai/Y&#43;PkEQHQubJdq3b182aYzpmWeegTlz5sAjjzwix&#43;Lj41Xteby9aO/jO5pzF/UsEYSrYtDpoOpSPuiabs3t7NhkE1wsi0IaMmSIWMUukGtJWJZibQne45zf59zVwWsQD5xZpYq5DSlniSBcldrCAtg//L/gWqJrrCCxyWbJyclMiNZ&#43;dZCUlMTqc3Kkaz8iokRx&#43;QO/IvnNwF/i2HOxsyVwCUtznouzgLLsP0Mt0X6vV7JEEK7KbSXR06dPMyGGhEj3tBFBIYm9Pi7RiIgIOY/pzjvvtCjJ6dOnq9q5u7vDwYMHxWbNRpQ4Xmj3/vvvVx0DU2RkpGIr58SSRAnC1bmtJIpw6Tz99NNw&#43;fJlsdoMpag8PT0hIyMDxowZw8p33XWXqu0HH3zA4pMnT4bs7GzIysqCXr16sVh0dLSqbXMRJdqtWzd5f3iRidTUVOjcuTOLWZK6LRgMAHO9auBPb1XB6A&#43;q4Xq59V7vwYR6GPVuNTwzpwqmfVIDNRp1W/8DdUyiD06qYPnSMqke85iU7XZH1LP88awGGLGgGoa9UwURCQ1yG5GVPhoYMrcKnvtLNSunZ&#43;tU&#43;7Qn69atg&#43;HDh8PgwYPZCb&#43;qqrb9o9Bo/LcnfgNsCv8CTuTGsVhWfgpkXjgit8E8L&#43;&#43;I/h78o1ZDvU79esSe2sf24Re5EorKLqnqlBga9fBr4kbwCfOCXbE/gE4vvTdK8FhXSqQr/6fn/Qa&#43;4V7sOeoM1t8zR5G9dSPEvjMF4ha8Bmd914nVoCkpgvyw/SxfkBgDcfNfgyOebzMRiuSH7oOiY0ksf&#43;q7f0Ls3Ffh&#43;JcfCa1uLtErMZEQv3AqO86FIPWdFNoLmyWK4sHeodiTmzZtmlkvFOH1paWlqjj2RJVyQ7C8cOFCVQzp2rWrWdvmIkoU8xs2bFC0kOZNO3XqBG&#43;88YYqbgueK2vk&#43;crOw8vBfaiU/yVQfcGQ8spGuV2nYeXgMUzKY5r9v5LUEB7jKTlTeq3FOVHM3z22HHpPrGB5j6bjYuo2Uj13in8zeB0e170pv2KNhj3ac6YDX2P&#43;XuBr7eHhIZfnzZsnNncIRWWX4cvtc1n6l/877PEr4&#43;PqwA9YnsPbrGqKYwpJ3sTqdPoGOYbbfuU/T9rfjgXy9pyAmB/Mjocpv1C6XxQHYweSNsn74o&#43;Yrpbmqdo6ityALUxkmIJG9YP9Ix6XyzqN6ZdbhUnxEDSyL4S/NIzVBY/&#43;g9z20NTnFXsEFjvi&#43;Y60H2Mb1rZpn3gyiWNJooaGBtPzMW4bNLKfXG5vWmciC2RmZsLYsWPZEielTDdu3KhqJ0qM8&#43;KLL6riq1atstgO8fLyYnV435uWIh6fl9PT&#43;f197E9USgOT0KOvVKjiXhslOeVdNsgxLjGN1mQslBuXrhIsi8N5SxLFdN849bH7TKo02x&#43;X5oUrph740AVV8j7sKdGePXtafH/F98dRGBoNTErfBLyriq/a9b4sLA4vr9wptUVxauolkWD8213vGV8b03t4sSibxdfvXyHHTuTGs9jmiC/kGBJ0xJvFtfWmM9H8eNsOr5JjVbVlTUJ9R445Cp1Gw&#43;QU8vxAVfx6xgkWj3xtrBxDiTJ5jnkSGnGo1UTKp0tY/HIk3mJbgksv/t1pcozHcXuOJYnybZU93EbjFwNj4S&#43;an9huSxz2aQ0ICJC/ECdPmu5tY&#43;1LsmjRIhbnQ&#43;ju3buzMkpZTHy4vXbtWmEvt0Y8/ooVK&#43;QYpj59&#43;rAhpj3pMcpcgByM/7HpRBB&#43;Bmf/vQaWfGO&#43;tANlKe6jJRKtqFIbEKcHlO0ycnSs/NE65S2Pcbhr2oc9JTp79mwYPXq0GGbDenwfLI1i7Mm&#43;xJ&#43;ZlKo16j8uOEy3JtEarfqE3cWiHBZv0JkPyTdHfKnax1fbpd6kJTAeEPO9qmyp7dp9yy3G7U3VpQvw21Lj/7fgiljFpHVgbH&#43;5zCVanCYN05UEjejLeqkcaz3H33duZvHKPOkOsKJEKy&#43;cY&#43;Xzu0233&#43;aUncm0uM&#43;2xNxmLWDWrFmwfPlyMawCvxA9evRQlZsjUT5FkJiYaDXl5&#43;erd9IMrB0f52bfeustlVCXLVsmNmsVXELTPq8xS6L0lKDYlq6uhQEzpF6j2K4lErWEMj7m3Wqr7Z5fJAncnhLl4MnHuLg49loPGDBAfu0dfV3UlTsXWhWSKDGxzPlu919YPOiIj1nacvArVnel5Dw06OtZ/uudC8zaYRL3L5Y53qGfWYw7FOP7cykyBFL/sRTCX24asit6jVyiloidN1lVh3kciovoNLWsLmPNv1hZlGjYxCGsnPqPJXDsn8vNEtbhc2wvzG3SAvDDjrK7GdjmjjvuUJUtSUyUKM6LWWpnK9aOrwTP2DenXXOoqzfNcd4scXBo32WEuq776HJ4dLL58BvL9pLof0833z/H87taVmdPiRYXF5tN/eDc6NChQ9tEotZEhfA5SI61tjiM53XW0snz8ay3K8YtJQ7mxWkGxDv0c1U7R5KxbqVRTqZ5UEyxc6ewmChRZW9TScJ7M8wkeuTD&#43;YoWEob6elaXtEI6/yFKVPkcrKXsLT8qd9mm2GQJXNqEH3hrPba8vDxWrzxxY01OokT5Yn08Qy/y6KOPsrrWrOlUHp//WMDX13RfdQ5OGdzqD0RzuZnIlOBNLnnblHT1cHbATNuG85ZQxp9733pP9IX37NsTxfeYvw&#43;Vleoh8ogRI9pEot8GLLIqJEtSs9T2u0CpJ3orcLiP7XA43hzaW6IF8YeZmEJeGMRO6CjBuChRpSiVRM9&#43;yUyiEa&#43;aT&#43;E01FSzurObpGk0UaJh459hZeyxOiPmNmshyrOqS5cuBT8/P1i/fr08t3XPPfeo2jdXogj/Qs2fP5/1XEpKSmDcuHEs1r&#43;/aV6mJYjH59MGeAIMv7jXr19nKwswNnPmTMWWredmIhto7AEu/Er6cARH17N2m4PNlxP921jp7LoSe0r0&#43;GlpTtTrJ/WcKML3YS&#43;J4mcEX19Lc8/8/cEryTuSXxN/YkKqa1D/f5Vn2zlimZOUFc7iBoP5UriYk3shMHatPF9qbR8ILneKSN0ul9tbotizZNLSmn8WMB40&#43;gm5zCWqrzefF8b9NGdONO/XHSyOc5&#43;IKFFc1oTl/JA9ys0YeFY/acUCqC26Jla1GeY2ayEovZEjR8offmW69957xeZmEuNYkijCe53K9Pbbb6vatATx&#43;LguEdenisdYvHixYivb&#43;NJbyyQ08C218LIv6Fl8&#43;Vrpw1pQYmBlHD4r8d0nrQkVZYjlPi&#43;rT4yI7cSyEjHOVwAoe8F/bDqhZU&#43;J4vUU8DWeMGGCKh4YGCi//mVlZao6e4OjGBTS18JSpG&#43;aeqjNkSiC8f/bs0QVwzPt4jYhyVtYeW&#43;CetiZdy2LxY/lmNY9t7dED8&#43;YwKSlKVavfol6c6KZCLlED746UtES4OSqz1j8UkSwHOPbiutNMYbLnTiiRPG94tvq69UdDGmZlHqeFU9qY2orzG1GOISHJkk9SZaGNz0a0/3C0iO&#43;zAjTC/NNAlvpLS2HunTN9Eemj2Kf/uHSh4uXOWJZiaW48viYUKwDp1mfL20tfIUFrvkdNGiQLM89e/awR0cuOeNUa83nKlcp5jk5YllJaUWB2T54Ehfk8&#43;E/JpQ3z28IUl/xDGPtKdG6suuytPBMfOj4wSyPvcrgMdLaTg6XKF8bqlz7GfHqKMVeLcxtjpB6vJgMCjmKEkUqcrNV2&#43;KZf55v1Fv&#43;VWRb0XZHIuDkGR0MNvZG/3N8BfQ3DuNXfG8&#43;XEJm/r0GHp9SaRRvJXiuNvVKJ31YAx&#43;tV28z9r1qGDSzCj77UYpjG0wcsazEWvxATD289kktfN60z8ctnNSyB/gLpQcffJCNNnjPv6Ghgd06Y8kSde/OkUSd2A37f/uFLb5HRGnuilnDkjVq66rYL5V&#43;2LsMNgb/DfYl/iQ2kTl3NYOdZf9&#43;z1L2mJQVJjZhx8JfKIkcTPO/6fOwJ9jjS1g0HcInDYeomRPhatwhFi9MToDkFfOh4vzvUlkxJ5r2maex/TCImvUilGackPfF4dLDuc3YuZMh/KUh7NdHInVlN9gxbmSZlkZyUj9dAgenjDYKeiQkvD&#43;DrRUVwc8PpraCJEowrhQaYPVWLVTVmI/Zb9abdVXSjMNn/jNPJXyY/9OBT8QqwgI3O7EkwiXa0SCJEjIoyp7PVkB9vUmkwxZKUwqbg8xPdrky127kM1n6hnnJMRQoDqMxXllr&#43;cpkhBqSKEmUUBDT9PNUMS380vKw39XZfFD6VZGYLhSeFZsSViCJkkQJC5SWGcBntxbiUtr&#43;qkHtweXiXPbb9vLqErGKIG4JSZQgCMIGSKIEQRA2QBIlCIKwAZIoQRCEDZBECYIgbIAkShAEYQMkUYIgCBsgiRIEQdgASZQgCMIGSKIEQRA2QBIlCIKwAZIoQRCEDZBECYIgbOD/AapCRp6LxaAoAAAAAElFTkSuQmCC" alt="" class="mx-auto my-0 rounded-md" />
+</figure>
+<br>
+Figure 2 : One word &ldquo;attends&rdquo; to other words in the same sentence differently.<br>
+<em>Ref:</em> <a href="https://lilianweng.github.io/posts/2018-06-24-attention/" target="_blank" rel="noreferrer">https://lilianweng.github.io/posts/2018-06-24-attention/</a></li>
+<li><strong>Multi-Head Attention:</strong> Instead of having a single attention mechanism, <strong>multi-head attention</strong> uses multiple attention layers to learn different relationships in the data simultaneously. This allows the model to capture more diverse patterns.</li>
+<li><strong>Masked Multi-Head Attention</strong>: We force the model to only calculate attention corresponding to only the previous tokens that it has seen in the sentence and not for the future tokens. Used in the Decoder part of the transformer.</li>
+</ol>
+<p><strong>Blogs explaining attention in detail:</strong></p>
+</li>
+<li>
+<p><a href="https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/" target="_blank" rel="noreferrer">Visualizing A Neural Machine Translation Model (Mechanics of Seq2seq Models With Attention) – Jay Alammar</a></p>
+</li>
+<li>
+<p><a href="https://lilianweng.github.io/posts/2018-06-24-attention/" target="_blank" rel="noreferrer">Attention? Attention! | Lil&rsquo;Log</a></p>
+</li>
+<li>
+<p><strong>Feed-Forward Layers:</strong></p>
+<ol>
+<li>After the attention layer, a feed-forward network is applied to transform the representations for each token. This adds non-linearity and complexity to the model.</li>
+</ol>
+</li>
+<li>
+<p><strong>Add &amp; Norm Layers</strong> :</p>
+<ol>
+<li>Every transformer layer consisting of a multi-head attention module and a feed-forward layer also employs layer normalization and residual connections. This is corresponding to the Add and Norm layer in Figure 1, where ‘Add’ corresponds to the residual connection and ‘Norm’ corresponds to layer normalization.</li>
+</ol>
+</li>
+<li>
+<p><strong>Output Layer</strong>:</p>
+<ol>
+<li>An Output Layer, such as the Softmax layer, produces the final predictions of the model,converting the computed values into probabilities for tasks like classification or generating text.</li>
+</ol>
+</li>
+</ol>
+<h3 id="reading-recommendations" class="relative group">Reading Recommendations: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#reading-recommendations" aria-label="Anchor">#</a></span></h3><ol>
+<li>I highly encourage this blog to anyone who wants to understand transformers and attention in the most simplified manner.  It beautifully explains all the above concepts visually. <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noreferrer">The Illustrated Transformer – Jay Alammar</a></li>
+<li>Youtube Video for the same: <a href="https://www.youtube.com/watch?v=-QH8fRhqFHM" target="_blank" rel="noreferrer">https://www.youtube.com/watch?v=-QH8fRhqFHM</a></li>
+<li>Transformer Paper: <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noreferrer">[1706.03762] Attention Is All You Need</a></li>
+<li><a href="https://huggingface.co/docs/transformers/en/index" target="_blank" rel="noreferrer">Hugging Face’s Course on Transformers</a> – Hands-on tutorials with practical implementation examples.</li>
+</ol>
+<h3 id="other-referencesresources" class="relative group">Other References/Resources: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#other-referencesresources" aria-label="Anchor">#</a></span></h3><ol>
+<li>Residual Networks: <a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noreferrer">[1512.03385] Deep Residual Learning for Image Recognition</a></li>
+<li>Layer Normalization: <a href="https://arxiv.org/abs/1607.06450" target="_blank" rel="noreferrer">[1607.06450] Layer Normalization</a></li>
+</ol>
+<hr>
+<h2 id="wrapping-up" class="relative group">Wrapping Up: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#wrapping-up" aria-label="Anchor">#</a></span></h2><ul>
+<li>Transformers revolutionized large language models (LLMs) and AI with the introduction of the <strong>self-attention mechanism</strong>, allowing models to effectively capture long-range dependencies and contextual relationships across entire sequences.</li>
+<li>Unlike RNNs and LSTMs, Transformers process data in <strong>parallel</strong>, significantly enhancing scalability and training speed.</li>
+<li>The architecture supports <strong>massive pretraining</strong> on diverse datasets, followed by fine-tuning for specific tasks, enabling powerful <strong>transfer learning capabilities</strong>.</li>
+<li>This scalability and flexibility have driven breakthroughs in performance, enabling the development of state-of-the-art LLMs like <strong>GPT</strong> and <strong>BERT</strong>.</li>
+<li>These models excel in a variety of tasks, including <strong>text generation</strong>, <strong>translation</strong>, and <strong>summarization</strong>.</li>
+</ul>
+<p>I hope you enjoyed the article and found the insights on transformers and their impact on AI and large language models helpful. If you have any questions or would like to explore the topic further, feel free to reach out!<br>
+<strong>Happy Reading</strong>! :D</p>
+<hr>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+      
+      
+        
+        
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="!mb-0 !mt-0 me-4 w-24 h-auto rounded-full"
+      
+    >
+      
+      
+      
+      
+      <img
+        width="500"
+        height="500"
+        class="!mb-0 !mt-0 me-4 w-24 h-auto rounded-full"
+        alt="Shefali Garg"
+        loading="lazy" decoding="async"
+        
+          src="/img/shefali_pp.jpg"
+        
+      />
+    </picture>
+  
+
+
+      
+    
+    <div class="place-self-center">
+      
+        <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+          Author
+        </div>
+        <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+          Shefali Garg
+        </div>
+      
+      
+        <div class="text-sm text-neutral-700 dark:text-neutral-400">Software Engineer at Google DeepMind</div>
+      
+      <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://github.com/shefali92"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://www.linkedin.com/in/gargshefali/"
+          target="_blank"
+          aria-label="Linkedin"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://www.researchgate.net/profile/Shefali-Garg"
+          target="_blank"
+          aria-label="Researchgate"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 32v448h448V32H0zm262.2 334.4c-6.6 3-33.2 6-50-14.2-9.2-10.6-25.3-33.3-42.2-63.6-8.9 0-14.7 0-21.4-.6v46.4c0 23.5 6 21.2 25.8 23.9v8.1c-6.9-.3-23.1-.8-35.6-.8-13.1 0-26.1.6-33.6.8v-8.1c15.5-2.9 22-1.3 22-23.9V225c0-22.6-6.4-21-22-23.9V193c25.8 1 53.1-.6 70.9-.6 31.7 0 55.9 14.4 55.9 45.6 0 21.1-16.7 42.2-39.2 47.5 13.6 24.2 30 45.6 42.2 58.9 7.2 7.8 17.2 14.7 27.2 14.7v7.3zm22.9-135c-23.3 0-32.2-15.7-32.2-32.2V167c0-12.2 8.8-30.4 34-30.4s30.4 17.9 30.4 17.9l-10.7 7.2s-5.5-12.5-19.7-12.5c-7.9 0-19.7 7.3-19.7 19.7v26.8c0 13.4 6.6 23.3 17.9 23.3 14.1 0 21.5-10.9 21.5-26.8h-17.9v-10.7h30.4c0 20.5 4.7 49.9-34 49.9zm-116.5 44.7c-9.4 0-13.6-.3-20-.8v-69.7c6.4-.6 15-.6 22.5-.6 23.3 0 37.2 12.2 37.2 34.5 0 21.9-15 36.6-39.7 36.6z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://scholar.google.com/citations?user=dSj98N4AAAAJ&amp;hl=en"
+          target="_blank"
+          aria-label="Google-Scholar"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="currentColor" d="M390.9 298.5c0 0 0 .1 .1 .1c9.2 19.4 14.4 41.1 14.4 64C405.3 445.1 338.5 512 256 512s-149.3-66.9-149.3-149.3c0-22.9 5.2-44.6 14.4-64h0c1.7-3.6 3.6-7.2 5.6-10.7c4.4-7.6 9.4-14.7 15-21.3c27.4-32.6 68.5-53.3 114.4-53.3c33.6 0 64.6 11.1 89.6 29.9c9.1 6.9 17.4 14.7 24.8 23.5c5.6 6.6 10.6 13.8 15 21.3c2 3.4 3.8 7 5.5 10.5zm26.4-18.8c-30.1-58.4-91-98.4-161.3-98.4s-131.2 40-161.3 98.4L0 202.7 256 0 512 202.7l-94.7 77.1z"/></svg></span></a
+        >
+      
+    
+  </div>
+
+</div>
+    </div>
+  </div>
+
+
+      
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/tranformer/&amp;quote=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
+          title="Share on Facebook"
+          aria-label="Share on Facebook"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://twitter.com/intent/tweet/?url=http://localhost:1313/posts/tranformer/&amp;text=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
+          title="Tweet on Twitter"
+          aria-label="Tweet on Twitter"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://reddit.com/submit/?url=http://localhost:1313/posts/tranformer/&amp;resubmit=true&amp;title=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
+          title="Submit to Reddit"
+          aria-label="Submit to Reddit"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/posts/tranformer/&amp;title=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
+          title="Share on LinkedIn"
+          aria-label="Share on LinkedIn"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="mailto:?body=http://localhost:1313/posts/tranformer/&amp;subject=Transformers%20and%20Attention:%20The%20Backbone%20of%20LLMs"
+          title="Send via email"
+          aria-label="Send via email"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+</span></a
+        >
+      
+    
+  </section>
+
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/posts/bestrq/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Understanding BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-04-06 00:00:00 &#43;0000 UTC">6 April 2024</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+        
+          
+        
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            © Shefali Garg
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+        <div
+          class="me-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        >
+          <button id="appearance-switcher-0" type="button" aria-label="appearance switcher">
+            <div
+              class="flex h-12 w-12 items-center justify-center dark:hidden"
+              title="Switch to dark appearance"
+            >
+              <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+            </div>
+            <div
+              class="hidden h-12 w-12 items-center justify-center dark:flex"
+              title="Switch to light appearance"
+            >
+              <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+            </div>
+          </button>
+        </div>
+      
+    </div>
+  </div>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="http://localhost:1313/"
+>
+  <div
+    id="search-modal"
+    class="top-20 mx-auto flex min-h-0 w-full max-w-3xl flex-col rounded-md border border-neutral-200 bg-neutral shadow-lg dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex flex-none items-center justify-between px-2">
+      <form class="flex min-w-0 flex-auto items-center">
+        <div class="flex h-8 w-8 items-center justify-center text-neutral-400">
+          <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="mx-1 flex h-12 flex-auto appearance-none bg-transparent focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex h-8 w-8 items-center justify-center text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto overflow-auto px-2">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+</html>

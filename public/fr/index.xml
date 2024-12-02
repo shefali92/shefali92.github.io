@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Antoine Soetewey</title>
+    <link>http://localhost:1313/fr/</link>
+    <description>Recent content on Antoine Soetewey</description>
+    <generator>Hugo</generator>
+    <language>fr-BE</language>
+    <atom:link href="http://localhost:1313/fr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A propos</title>
+      <link>http://localhost:1313/fr/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/fr/about/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Conditions et politiques</title>
+      <link>http://localhost:1313/fr/terms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/fr/terms/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Contact</title>
+      <link>http://localhost:1313/fr/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/fr/contact/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CV</title>
+      <link>http://localhost:1313/fr/cv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/fr/cv/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Enseignement</title>
+      <link>http://localhost:1313/fr/teaching/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/fr/teaching/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Logiciel</title>
+      <link>http://localhost:1313/fr/software/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/fr/software/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Recherche</title>
+      <link>http://localhost:1313/fr/research/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/fr/research/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rendez-vous</title>
+      <link>http://localhost:1313/fr/rdv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/fr/rdv/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
