@@ -11,8 +11,8 @@
   dir="ltr"
   class="scroll-smooth"
   data-default-appearance="light"
-  data-auto-appearance="false"
-><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=54665&amp;path=livereload" data-no-instant defer></script>
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
@@ -84,7 +84,7 @@
   
   
   
-  <link rel="canonical" href="http://localhost:54665/posts/bestrq/" />
+  <link rel="canonical" href="http://localhost:1313/posts/bestrq/" />
   
   
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -99,7 +99,7 @@
   
   
   
-  <meta property="og:url" content="http://localhost:54665/posts/bestrq/">
+  <meta property="og:url" content="http://localhost:1313/posts/bestrq/">
   <meta property="og:site_name" content="Shefali Garg">
   <meta property="og:title" content="Understanding BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition">
   <meta property="og:description" content="This article explores BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition.">
@@ -111,11 +111,11 @@
     <meta property="article:tag" content="Speech">
     <meta property="article:tag" content="AI">
     <meta property="article:tag" content="Self-Supervised Training">
-    <meta property="og:image" content="http://localhost:54665/posts/bestrq/feature-artturi-jalli-gYrYa37fAKI-unsplash.jpg">
+    <meta property="og:image" content="http://localhost:1313/posts/bestrq/feature-artturi-jalli-gYrYa37fAKI-unsplash.jpg">
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="http://localhost:54665/posts/bestrq/feature-artturi-jalli-gYrYa37fAKI-unsplash.jpg">
+  <meta name="twitter:image" content="http://localhost:1313/posts/bestrq/feature-artturi-jalli-gYrYa37fAKI-unsplash.jpg">
   <meta name="twitter:title" content="Understanding BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition">
   <meta name="twitter:description" content="This article explores BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition.">
 
@@ -130,7 +130,7 @@
     "description": "This article explores BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition.",
     
     "inLanguage": "en-US",
-    "url" : "http:\/\/localhost:54665\/posts\/bestrq\/",
+    "url" : "http:\/\/localhost:1313\/posts\/bestrq\/",
     "author" : {
       "@type": "Person",
       "name": "Shefali Garg"
@@ -144,7 +144,7 @@
     "keywords": ["Speech","AI","Self-supervised Training"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1552"
+    "wordCount": "1562"
   }
   </script>
     
@@ -155,13 +155,13 @@
    "itemListElement": [
      {
        "@type": "ListItem",
-       "item": "http://localhost:54665/",
+       "item": "http://localhost:1313/",
        "name": "Shefali Garg",
        "position": 1
      },
      {
        "@type": "ListItem",
-       "item": "http://localhost:54665/posts/",
+       "item": "http://localhost:1313/posts/",
        "name": "Posts",
        "position": 2
      },
@@ -643,7 +643,7 @@
         </div>
       
       <div class="min-h-0 min-w-0 max-w-prose grow">
-        <p>Have you ever wished your voice assistant understood you a little better? Automatic speech recognition (ASR) technology is constantly evolving, but achieving high accuracy can be complex. Today, we’ll explore a new approach called <a href="https://proceedings.mlr.press/v162/chiu22a/chiu22a.pdf" target="_blank" rel="noreferrer">BEST-RQ (BERT-based Speech pre-Training with Random-projection Quantizer</a>) introduced by Google Researchers in 2023 that has made waves in the field.</p>
+        <h1 id="understanding-best-rq-a-simple-self-supervised-pre-training-approach-for-speech-recognition" class="relative group">Understanding BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#understanding-best-rq-a-simple-self-supervised-pre-training-approach-for-speech-recognition" aria-label="Anchor">#</a></span></h1><p>Have you ever wished your voice assistant understood you a little better? Automatic speech recognition (ASR) technology is constantly evolving, but achieving high accuracy can be complex. Today, we’ll explore a new approach called <a href="https://proceedings.mlr.press/v162/chiu22a/chiu22a.pdf" target="_blank" rel="noreferrer">BEST-RQ (BERT-based Speech pre-Training with Random-projection Quantizer</a>) introduced by Google Researchers in 2023 that has made waves in the field.</p>
 <p>This innovative technique leverages the power of <a href="https://arxiv.org/abs/1810.04805" target="_blank" rel="noreferrer">BERT</a>, a popular language model, specifically adapted for speech recognition. But BEST-RQ takes it a step further by introducing a unique scalable pre-training method, allowing the model to learn effectively from vast amounts of unlabelled data, leading to significant improvements in accuracy.</p>
 <p>Intrigued? In this short blog post, we’ll break down the key concepts behind BEST-RQ and how it’s transforming speech recognition. We’ll explore how it simplifies the learning process and unlocks the potential for even more accurate and robust ASR systems in the future!</p>
 <h2 id="problem" class="relative group">Problem <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#problem" aria-label="Anchor">#</a></span></h2><p>Speech recognition aims to convert spoken language into written text. Traditional methods rely on labeled data, where spoken words are paired with their corresponding written text. But this approach requires a vast amount of labeled data, which can be expensive and time-consuming to collect.</p>
@@ -877,7 +877,7 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:54665/posts/bestrq/&amp;quote=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
+          href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/bestrq/&amp;quote=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
           title="Share on Facebook"
           aria-label="Share on Facebook"
           target="_blank"
@@ -890,7 +890,7 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://twitter.com/intent/tweet/?url=http://localhost:54665/posts/bestrq/&amp;text=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
+          href="https://twitter.com/intent/tweet/?url=http://localhost:1313/posts/bestrq/&amp;text=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
           title="Tweet on Twitter"
           aria-label="Tweet on Twitter"
           target="_blank"
@@ -903,7 +903,7 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://reddit.com/submit/?url=http://localhost:54665/posts/bestrq/&amp;resubmit=true&amp;title=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
+          href="https://reddit.com/submit/?url=http://localhost:1313/posts/bestrq/&amp;resubmit=true&amp;title=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
           title="Submit to Reddit"
           aria-label="Submit to Reddit"
           target="_blank"
@@ -916,7 +916,7 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:54665/posts/bestrq/&amp;title=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/posts/bestrq/&amp;title=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
           title="Share on LinkedIn"
           aria-label="Share on LinkedIn"
           target="_blank"
@@ -929,7 +929,7 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
       
         <a
           class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-          href="mailto:?body=http://localhost:54665/posts/bestrq/&amp;subject=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
+          href="mailto:?body=http://localhost:1313/posts/bestrq/&amp;subject=Understanding%20BEST-RQ:%20A%20Simple%20Self-Supervised%20Pre-training%20Approach%20for%20Speech%20Recognition"
           title="Send via email"
           aria-label="Send via email"
           target="_blank"
@@ -1059,7 +1059,7 @@ By avoiding complex representation learning, BEST-RQ spends less time grappling 
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:54665/"
+  data-url="http://localhost:1313/"
 >
   <div
     id="search-modal"

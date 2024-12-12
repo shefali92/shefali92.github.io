@@ -1,0 +1,1394 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en-US"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Training Large Language Models: From Pre-training to Fine-tuning and Beyond – SFT, PEFT, and RLHF &middot; Shefali Garg</title>
+    <meta name="title" content="Training Large Language Models: From Pre-training to Fine-tuning and Beyond – SFT, PEFT, and RLHF &middot; Shefali Garg" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.b0785c8131a75f72b211435af86269eb2d4b81dda03a8f2cf5ccb1c967747167.css"
+    integrity="sha256-sHhcgTGnX3KyEUNa&#43;GJp6y1Lgd2gOo8s9cyxyWd0cWc="
+  />
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+  
+  
+    
+    
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.f64817246a3814fe8ac69eaa744f58dafd97df187e7f28274423d3de185d4625.js"
+      integrity="sha256-9kgXJGo4FP6Kxp6qdE9Y2v2X3xh&#43;fygnRCPT3hhdRiU="
+      data-copy="Copy"
+      data-copied="Copied"
+    ></script>
+  
+  
+  <meta
+    name="description"
+    content="
+      This article explores training strategies for LLMs
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="http://localhost:1313/posts/training/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/training/">
+  <meta property="og:site_name" content="Shefali Garg">
+  <meta property="og:title" content="Training Large Language Models: From Pre-training to Fine-tuning and Beyond – SFT, PEFT, and RLHF">
+  <meta property="og:description" content="This article explores training strategies for LLMs">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-12T00:00:00+00:00">
+    <meta property="article:tag" content="LLM">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="NLP">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Training Large Language Models: From Pre-training to Fine-tuning and Beyond – SFT, PEFT, and RLHF">
+  <meta name="twitter:description" content="This article explores training strategies for LLMs">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Training Large Language Models: From Pre-training to Fine-tuning and Beyond – SFT, PEFT, and RLHF",
+    "headline": "Training Large Language Models: From Pre-training to Fine-tuning and Beyond – SFT, PEFT, and RLHF",
+    "description": "This article explores training strategies for LLMs",
+    
+    "inLanguage": "en-US",
+    "url" : "http:\/\/localhost:1313\/posts\/training\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Shefali Garg"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-12-12T00:00:00\u002b00:00",
+    "datePublished": "2024-12-12T00:00:00\u002b00:00",
+    
+    "dateModified": "2024-12-12T00:00:00\u002b00:00",
+    
+    "keywords": ["LLM","AI","NLP"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "2232"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Shefali Garg",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "name": "Training Large Language Models From Pre Training to Fine Tuning and Beyond – Sft, Peft, and Rlhf",
+       "position": 3
+     }
+   ]
+ }
+  </script>
+
+  
+  <meta name="author" content="Shefali Garg" />
+  
+    
+      <link href="https://github.com/shefali92" rel="me" />
+    
+      <link href="https://www.linkedin.com/in/gargshefali/" rel="me" />
+    
+      <link href="https://www.researchgate.net/profile/Shefali-Garg" rel="me" />
+    
+      <link href="https://scholar.google.com/citations?user=dSj98N4AAAAJ&amp;hl=en" rel="me" />
+    
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="z-40 flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Shefali Garg</a
+  >
+
+    </div>
+    
+      
+      <label id="menu-button" for="menu-controller" class="block sm:hidden">
+        <input type="checkbox" id="menu-controller" class="hidden" />
+        <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+          <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+        </div>
+        <div
+          id="menu-wrapper"
+          class="invisible fixed inset-0 z-30 m-auto h-full w-full cursor-default overflow-auto bg-neutral-100/50 opacity-0 backdrop-blur-sm transition-opacity dark:bg-neutral-900/50"
+        >
+          <ul
+            class="mx-auto flex w-full max-w-7xl list-none flex-col overflow-visible px-6 py-6 text-end sm:px-14 sm:py-10 sm:pt-10 md:px-24 lg:px-32"
+          >
+            <li class="mb-1">
+              <span class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400"
+                ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span></span
+              >
+            </li>
+            
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/research/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >Research</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/posts"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >Blog: AI/ML</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/meta/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >Blog: Misc</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/about/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >About</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                  
+              
+                <li class="group mb-1">
+                  <button id="search-button-m0" title="Search (/)">
+                    <span
+                      class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                    >
+                      <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+                    </span>
+                  </button>
+                </li>
+              
+            
+          </ul>
+        </div>
+      </label>
+      
+      <ul class="hidden list-none flex-row text-end sm:flex">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/research/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Research</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/posts"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog: AI/ML</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/meta/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog: Misc</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/about/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >About</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+              
+          
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              <button id="search-button-m1" title="Search (/)">
+                <span
+                  class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                >
+                  <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+                </span>
+              </button>
+            </li>
+          
+
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+        <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="hidden inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="/"
+      >Shefali Garg</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class=" inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="/posts/"
+      >Posts</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="hidden inline">
+    <a
+      class="dark:underline-neutral-600 decoration-neutral-300 hover:underline"
+      href="/posts/training/"
+      >Training Large Language Models: From Pre-training to Fine-tuning and Beyond – SFT, PEFT, and RLHF</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Training Large Language Models: From Pre-training to Fine-tuning and Beyond – SFT, PEFT, and RLHF
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2024-12-12 00:00:00 &#43;0000 UTC">12 December 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">11 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+    <div class="my-1 flex flex-wrap text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
+      
+        
+          
+            <a
+              href="/tags/llm/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >LLM</a
+            >
+          
+            <a
+              href="/tags/ai/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >AI</a
+            >
+          
+            <a
+              href="/tags/nlp/"
+              class="mx-1 my-1 rounded-md border border-neutral-200 px-1 py-[1px] hover:border-primary-300 hover:text-primary-700 dark:border-neutral-600 dark:hover:border-primary-600 dark:hover:text-primary-400"
+              >NLP</a
+            >
+          
+        
+      
+    </div>
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+        <div class="order-first px-0 lg:order-last lg:max-w-xs lg:ps-8">
+          <div class="toc pe-5 lg:sticky lg:top-10 print:hidden">
+            <details open class="-ms-5 mt-0 overflow-hidden rounded-lg ps-5">
+  <summary
+    class="block cursor-pointer bg-neutral-100 py-1 ps-5 text-lg font-semibold text-neutral-800 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div class="border-s border-dotted border-neutral-300 py-2 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#pre-training-learning-general-language-representation">Pre-training: Learning General Language Representation</a>
+          <ul>
+            <li><a href="#key-details">Key Details:</a></li>
+            <li><a href="#benefits">Benefits:</a></li>
+            <li><a href="#recommended-reading">Recommended Reading:</a></li>
+          </ul>
+        </li>
+        <li><a href="#supervised-fine-tuning-sft-adapting-the-model-for-specific-tasks">Supervised Fine-tuning (SFT): Adapting the Model for Specific Tasks</a>
+          <ul>
+            <li><a href="#key-details-1">Key Details:</a></li>
+            <li><a href="#recommend-reading">Recommend Reading:</a></li>
+          </ul>
+        </li>
+        <li><a href="#parameter-efficient-fine-tuning-peft-a-more-efficient-approach">Parameter-Efficient Fine-Tuning (PEFT): A More Efficient Approach</a>
+          <ul>
+            <li><a href="#techniques-in-peft"><strong>Techniques in PEFT:</strong></a></li>
+            <li><a href="#key-details-2">Key Details:</a></li>
+            <li><a href="#recommended-reading-1">Recommended Reading:</a></li>
+          </ul>
+        </li>
+        <li><a href="#reinforcement-learning-from-human-feedback-rlhf-aligning-with-human-preferences">Reinforcement Learning from Human Feedback (RLHF): Aligning with Human Preferences</a>
+          <ul>
+            <li><a href="#rlhf-process">RLHF Process</a></li>
+            <li><a href="#key-details-3">Key Details:</a></li>
+            <li><a href="#recommended-reading-2">Recommended Reading:</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#comparison-of-pretraining-sft-peft-and-rlhf">Comparison of Pretraining, SFT, PEFT, and RLHF</a></li>
+    <li><a href="#conclusion"><strong>Conclusion</strong></a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+          </div>
+        </div>
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>The success of large language models (LLMs) like Gemini, GPT-4 etc is not only due to their massive scale but also the sophisticated training strategies employed. In the <a href="https://shefali92.github.io/posts/tranformer/" target="_blank" rel="noreferrer">last post</a>, we discussed about Transformers, the backbone of Large Language Models. In this post we&rsquo;ll talk about these training strategies.</p>
+<p>Training an LLM is a multi-phase process, typically consisting of <strong>pre-training</strong>, followed by various methods of <strong>fine-tuning</strong> to adapt the model for specific tasks. Over time, new techniques such as <strong>Supervised Fine-Tuning (SFT)</strong>, <strong>Parameter-Efficient Fine-Tuning (PEFT)</strong>, and <strong>Reinforcement Learning from Human Feedback (RLHF)</strong> have emerged to address the need for more efficient, scalable, and human-aligned approaches to model training.
+
+
+
+
+
+
+
+  
+  
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/../assets/img/training_hu545222444196214374.webp 330w,/../assets/img/training_hu5179553734587462912.webp 660w
+            
+              ,/../assets/img/training_hu14737668452690849114.webp 1024w
+            
+            
+              
+                ,/../assets/img/training_hu8769719673353494713.webp 1262w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1262"
+        height="454"
+        class="mx-auto my-0 rounded-md"
+        
+        loading="lazy" decoding="async"
+        
+          src="/../assets/img/training_hu14018533460317276618.png"
+          srcset="/../assets/img/training_hu8876541500675730091.png 330w,/../assets/img/training_hu14018533460317276618.png 660w
+          
+            ,/../assets/img/training_hu16271325518145441708.png 1024w
+          
+          
+            ,/../assets/img/training.png 1262w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p align="center" style="font-size: 0.8em;">
+  <em>Figure 1: Broad Stages of Model Training</em><br>
+  <em>Image Ref: <a href="https://medium.com/@bijit211987/(the-evolution-of-language-models-pre-training-fine-tuning-and-in-context-learning-b63d4c161e49)" target="_blank">Blog</a></em>
+</p>
+<hr>
+<h3 id="pre-training-learning-general-language-representation" class="relative group">Pre-training: Learning General Language Representation <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#pre-training-learning-general-language-representation" aria-label="Anchor">#</a></span></h3><p>Pre-training is the first and most computationally expensive phase of training an LLM. During this phase, the model is trained on vast amounts of raw text data from diverse sources (books, websites, Wikipedia, news articles, etc.). The objective here is not to perform any specific task but to learn general patterns, syntax, semantics, and structure of language.</p>
+<h4 id="key-details" class="relative group">Key Details: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#key-details" aria-label="Anchor">#</a></span></h4><ul>
+<li><strong>Unsupervised Learning</strong>: Pre-training is typically done in an unsupervised manner. The model learns by predicting the next word (or token) in a sentence given the previous words. This is done using an objective called <strong>masked language modeling (MLM)</strong> or <strong>autoregressive language modeling</strong>.
+<ul>
+<li><strong>MLM (BERT- style)</strong>: Random words in a sentence are masked, and the model learns to predict these masked words based on the context.</li>
+<li><strong>Autoregressive (GPT - style)</strong>: The model generates text token by token, predicting the next token in a sequence, conditioned on the previous tokens.</li>
+</ul>
+</li>
+<li><strong>Training Objective</strong>: The goal of pre-training is to optimize the model to generate meaningful text sequences, thereby learning intricate relationships between words and concepts. This phase often uses a <strong>cross-entropy loss</strong> between the predicted and actual tokens.</li>
+<li><strong>Scalability</strong>: Pre-training relies on enormous datasets and is computationally intensive, requiring vast amounts of data and computing power (often thousands of GPUs or TPUs over weeks or months). As the model grows in scale, the data and computational requirements also scale up.</li>
+</ul>
+<h4 id="benefits" class="relative group">Benefits: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#benefits" aria-label="Anchor">#</a></span></h4><ul>
+<li><strong>General Knowledge</strong>: The pre-trained model accumulates a wealth of knowledge about language structure, common facts, and even world knowledge. However, it is still a general-purpose model and does not specialize in any particular domain or task.</li>
+<li><strong>Transfer Learning</strong>: This phase allows the model to be later adapted to specific tasks through fine-tuning, enabling the transfer of learned representations to a variety of downstream applications like question answering, text generation, and sentiment analysis.</li>
+</ul>
+<h4 id="recommended-reading" class="relative group">Recommended Reading: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#recommended-reading" aria-label="Anchor">#</a></span></h4><ol>
+<li><a href="https://arxiv.org/abs/1810.04805" target="_blank" rel="noreferrer">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a> by Jacob Devlin et al. (). This paper introduces BERT, a popular transformer model, and provides the foundational ideas behind pre-training and fine-tuning for language tasks.</li>
+<li><a href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" target="_blank" rel="noreferrer">Improving Language Understanding by Generative Pre-Training</a> by Open AI</li>
+<li>Blog for Understanding GPT2: <a href="https://jalammar.github.io/illustrated-gpt2/" target="_blank" rel="noreferrer">https://jalammar.github.io/illustrated-gpt2/</a></li>
+<li>Blog for Understanding GPT3: <a href="https://jalammar.github.io/how-gpt3-works-visualizations-animations/" target="_blank" rel="noreferrer">https://jalammar.github.io/how-gpt3-works-visualizations-animations/</a></li>
+</ol>
+<hr>
+<h3 id="supervised-fine-tuning-sft-adapting-the-model-for-specific-tasks" class="relative group">Supervised Fine-tuning (SFT): Adapting the Model for Specific Tasks <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#supervised-fine-tuning-sft-adapting-the-model-for-specific-tasks" aria-label="Anchor">#</a></span></h3><p>Fine-tuning is the second phase, where a pre-trained model is adapted to perform well on specific tasks. Unlike pre-training, which is performed on generic, unstructured data, fine-tuning uses task-specific datasets (e.g., a dataset for text classification, named entity recognition, etc.).<br>
+The model, having already learned general language patterns, now fine-tunes its parameters to optimize its performance on these specialized tasks.</p>
+<p>Supervised fine-tuning (SFT) takes the pre-trained model and adjusts its weights using a labeled dataset for a particular downstream task. This is the most straightforward and traditional form of fine-tuning.</p>
+<h4 id="key-details-1" class="relative group">Key Details: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#key-details-1" aria-label="Anchor">#</a></span></h4><ul>
+<li><strong>Objective</strong>: In SFT, the model&rsquo;s behavior is tailored to fit a specific objective by minimizing the error between the model&rsquo;s predictions and the true labels for a supervised task using gradient-based optimization algorithms (commonly stochastic gradient descent or its variants such as Adam). Examples of such tasks include text classification, named entity recognition, or question answering.</li>
+<li><strong>Parameters</strong>: During SFT, the entire model, or selected layers, is updated based on the gradients computed from the error between the predicted output and the ground truth.</li>
+<li><strong>Loss Function</strong>: During SFT, the model typically optimizes for a <strong>cross-entropy loss</strong> for classification tasks or <strong>mean squared error</strong> for regression tasks. This enables the model to specialize in the particular task at hand.</li>
+<li><strong>Data Requirements</strong>: Fine-tuning typically requires a labeled dataset, often much smaller in size compared to the massive corpus used for pre-training. However, fine-tuning on smaller datasets can still yield significant performance gains for specific applications.</li>
+<li><strong>Limitations</strong>: Although SFT is powerful, it can be data-intensive and may not always provide optimal performance for tasks with small or limited datasets. Additionally, it can be time-consuming to train large models with millions or billions of parameters.</li>
+</ul>
+<h4 id="recommend-reading" class="relative group">Recommend Reading: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#recommend-reading" aria-label="Anchor">#</a></span></h4><ul>
+<li><a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noreferrer">Language Models are Few-Shot Learners</a> by Tom B. Brown et al. This paper introduces GPT-3 and demonstrates how supervised fine-tuning allows LLMs to perform well in a few-shot learning setup.</li>
+</ul>
+<p>To address the above mentioned limitations, more efficient fine-tuning strategies have been developed, such as <strong>Parameter-Efficient Fine-Tuning (PEFT)</strong> and <strong>Reinforcement Learning from Human Feedback (RLHF)</strong>.</p>
+<hr>
+<h3 id="parameter-efficient-fine-tuning-peft-a-more-efficient-approach" class="relative group">Parameter-Efficient Fine-Tuning (PEFT): A More Efficient Approach <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#parameter-efficient-fine-tuning-peft-a-more-efficient-approach" aria-label="Anchor">#</a></span></h3><p>As the cost of training large models continues to increase, PEFT offers a more efficient alternative to traditional fine-tuning methods by focusing on modifying smaller components of a model (e.g., specific attention heads, embeddings, or even the prompt structure) instead of updating the entire network.</p>
+<p>The central idea is to retain the majority of the pre-trained model’s parameters frozen (i.e., not updated during training) and only adjust a minimal set of parameters that are critical for the specific downstream task.</p>
+<h4 id="techniques-in-peft" class="relative group"><strong>Techniques in PEFT:</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#techniques-in-peft" aria-label="Anchor">#</a></span></h4><ul>
+<li><strong>Adapters</strong>: Adapters are small modules inserted between layers of a pre-trained model. Figure below shows the different ways that the adapter layer can be inserted. These modules are trainable, while the rest of the model&rsquo;s parameters are kept frozen. This allows the model to learn task-specific representations while minimizing the number of parameters that require optimization.</li>
+</ul>
+<p>
+
+
+
+
+
+
+  
+  
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/../assets/img/adapter_hu11541094472772713589.webp 330w,/../assets/img/adapter_hu2285514789543408581.webp 660w
+            
+              
+                ,/../assets/img/adapter_hu18160474254355349756.webp 966w
+              
+            
+            
+              
+                ,/../assets/img/adapter_hu18160474254355349756.webp 966w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="966"
+        height="270"
+        class="mx-auto my-0 rounded-md"
+        
+        loading="lazy" decoding="async"
+        
+          src="/../assets/img/adapter_hu44048107363810446.png"
+          srcset="/../assets/img/adapter_hu5477216960871150384.png 330w,/../assets/img/adapter_hu44048107363810446.png 660w
+          
+            ,/../assets/img/adapter.png 966w
+          
+          
+            ,/../assets/img/adapter.png 966w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p align="center" style="font-size: 0.8em;">
+  <em>Figure 2: Illustration of 3 representative adapter-based finetuning algorithms. Blue represents frozen, while yellow represents trainable parameters.</em><br>
+  <em>Image Ref: <a href="https://arxiv.org/pdf/2403.14608" target="_blank">arXiv Paper</a></em>
+</p>
+<ul>
+<li>
+<p><strong>LoRA (Low-Rank Adaptation)</strong>: LoRA proposes modifying only the low-rank matrices in the model, while keeping the original weights frozen. LoRA allows us to train some dense layers in a neural network indirectly by optimizing rank decomposition matrices of the dense layers’ change during adaptation instead, while keeping the pre-trained weights frozen, as shown in Figure 2.,This approach effectively reduces the number of trainable parameters by approximating weight updates with low-rank matrix decompositions, making it more computationally efficient.</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            
+              srcset="/../assets/img/lora_hu4309075182653340034.webp"
+            
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="348"
+        height="308"
+        class="mx-auto my-0 rounded-md"
+        
+        loading="lazy" decoding="async"
+        
+          src="/../assets/img/lora.png"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+</li>
+</ul>
+<p align="center" style="font-size: 0.8em;">
+  <em>Figure 3: The weight matrix is reparametrized into smaller matrices A and B. Only A and B are updated during training.</em><br>
+  <em>Image Ref: <a href="https://arxiv.org/pdf/2106.09685" target="_blank">arXiv Paper</a></em>
+</p>
+<ul>
+<li><strong>Prefix Tuning</strong>: This method introduces trainable vectors (prefixes) as shown in Figure 4 that are prepended to the model&rsquo;s input tokens. The model then learns to adjust these prefixes for specific tasks, enabling task adaptation with minimal parameter updates.<br>
+<img src="../../../assets/img/peft.png" alt="peft" width="500"/></li>
+</ul>
+<p align="center" style="font-size: 0.8em;">
+  <em>Figure 4: Fine-tuning (top) updates all Transformer parameters (the red Transformer box) and requires storing a full model copy for each task. Prefix-tuning (bottom), freezes the Transformer parameters and only optimizes the prefix (the red prefix blocks).</em><br>
+  <em>Image Ref: <a href="https://arxiv.org/pdf/2101.00190" target="_blank">arXiv Paper</a></em>
+</p>
+<ul>
+<li><strong>Prompt Tuning</strong>: Similar to prefix tuning, this approach involves learning task-specific &ldquo;prompts&rdquo; that are combined with the input data, allowing the model to adjust its response without modifying the model’s underlying parameters</li>
+</ul>
+<h4 id="key-details-2" class="relative group">Key Details: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#key-details-2" aria-label="Anchor">#</a></span></h4><ul>
+<li><strong>Methodology</strong>: PEFT focuses on optimizing a small number of model parameters or components that influence the model&rsquo;s behavior the most. This allows the model to adapt to specific tasks with fewer parameters, drastically reducing the computational cost of fine-tuning.</li>
+<li><strong>Efficiency</strong>: Rather than re-training the entire model, PEFT often focuses on adjusting specific prompts or lightweight modules, which allows large language models to be more adaptable and resource-efficient.</li>
+<li><strong>Few-shot and Zero-shot Learning</strong>: PEFT is particularly useful in few-shot or zero-shot learning settings, where task-specific data is limited. By fine-tuning only a small portion of the model, PEFT can quickly adapt the model to new tasks using very few examples.</li>
+<li><strong>Benefits</strong>: Significantly reduced memory requirements and faster training times compared to full fine-tuning. Additionally, PEFT methods often achieve competitive performance with far fewer parameters being updated, making them highly suitable for resource-constrained environments.</li>
+<li><strong>Limitations</strong>: PEFT methods often require careful tuning of the low-rank or adapter parameters to ensure the quality of the learned task-specific representations. Furthermore, some techniques, like prefix or prompt tuning, may have limitations in modeling more complex task-specific nuances that require deeper adaptation of the model’s weights.</li>
+</ul>
+<h4 id="recommended-reading-1" class="relative group">Recommended Reading: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#recommended-reading-1" aria-label="Anchor">#</a></span></h4><ol>
+<li>Adapter Paper : <a href="https://arxiv.org/abs/1902.00751" target="_blank" rel="noreferrer">[1902.00751] Parameter-Efficient Transfer Learning for NL</a></li>
+<li>LORA Paper : <a href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noreferrer">[2106.09685] LoRA: Low-Rank Adaptation of Large Language Models</a></li>
+<li>Prefix Tuning Paper: <a href="https://arxiv.org/abs/2101.00190" target="_blank" rel="noreferrer">[2101.00190] Prefix-Tuning: Optimizing Continuous Prompts for Generation</a></li>
+<li>Hugging Face Prefix Tuning Blog: <a href="https://huggingface.co/docs/peft/en/package_reference/prefix_tuning" target="_blank" rel="noreferrer">Prefix tuning</a></li>
+<li>Hugging Face Prompt Tuning Blog: <a href="https://huggingface.co/docs/peft/en/package_reference/prompt_tuning" target="_blank" rel="noreferrer">Prompt tuning</a></li>
+<li>Prompt Tuning Paper: <a href="https://arxiv.org/abs/2104.08691" target="_blank" rel="noreferrer">[2104.08691] The Power of Scale for Parameter-Efficient Prompt Tuning</a></li>
+</ol>
+<hr>
+<h3 id="reinforcement-learning-from-human-feedback-rlhf-aligning-with-human-preferences" class="relative group">Reinforcement Learning from Human Feedback (RLHF): Aligning with Human Preferences <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#reinforcement-learning-from-human-feedback-rlhf-aligning-with-human-preferences" aria-label="Anchor">#</a></span></h3><p>Reinforcement Learning from Human Feedback (RLHF) is an advanced fine-tuning strategy that goes beyond traditional supervised learning by incorporating human feedback directly into the training process. RLHF has become increasingly important in domains where alignment with human values, preferences, or ethical standards is crucial.</p>
+<h4 id="rlhf-process" class="relative group">RLHF Process <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#rlhf-process" aria-label="Anchor">#</a></span></h4><p>As shown in the Figure 5, the process of RLHF typically involves the following steps:</p>
+<p>
+
+
+
+
+
+
+  
+  
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/../assets/img/rlhf_hu17229704442736041871.webp 330w,/../assets/img/rlhf_hu5771197253527354568.webp 660w
+            
+              ,/../assets/img/rlhf_hu4318084110849093691.webp 1024w
+            
+            
+              
+                ,/../assets/img/rlhf_hu15723860985013059956.webp 1174w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1174"
+        height="466"
+        class="mx-auto my-0 rounded-md"
+        
+        loading="lazy" decoding="async"
+        
+          src="/../assets/img/rlhf_hu776936873015861227.png"
+          srcset="/../assets/img/rlhf_hu4281204484829462168.png 330w,/../assets/img/rlhf_hu776936873015861227.png 660w
+          
+            ,/../assets/img/rlhf_hu7029421154415440162.png 1024w
+          
+          
+            ,/../assets/img/rlhf.png 1174w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p align="center" style="font-size: 0.8em;">
+  <em>Figure 5: An example of RLHF procedure</em><br>
+  <em>Image Ref: <a href="https://drive.google.com/file/d/1mFvTxfuJg4VNutn9wBvH_URznLRkklb3/view" target="_blank">Newwhitepaper_Foundational Large Language models & text generation.pdf</a></em>
+</p>
+<ol>
+<li><strong>Pre-training</strong>: A large pre-trained LLM is first trained on a broad corpus of text (using unsupervised or supervised learning).</li>
+<li><strong>Reward Model Training</strong>: In parallel, human evaluators provide feedback on model outputs, often through ranking responses or assigning scores based on specific criteria such as relevance, coherence, or safety. These feedback signals are used to train a reward model, which learns to predict the quality of model outputs.</li>
+<li><strong>Reinforcement Learning (RL)</strong>: The pre-trained model is then fine-tuned using reinforcement learning algorithms (such as Proximal Policy Optimization or PPO). The model generates responses to various prompts, and the reward model provides feedback on these outputs. The model&rsquo;s parameters are updated based on the rewards, guiding the system toward producing higher-quality outputs over time.</li>
+</ol>
+<h4 id="key-details-3" class="relative group">Key Details: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#key-details-3" aria-label="Anchor">#</a></span></h4><ul>
+<li>
+<p><strong>Human-in-the-loop</strong>: RLHF integrates human feedback into the reinforcement learning framework, where human evaluators provide feedback on model outputs in the form of rankings, preferences, or even direct corrections. This feedback guides the model toward more human-aligned behavior.</p>
+</li>
+<li>
+<p><strong>Reinforcement Learning</strong>: In RLHF, the model is treated as an agent interacting with an environment, where the feedback (often in the form of a reward signal) serves as the environment’s response to the agent’s actions. The model adjusts its policies (i.e., behavior) to maximize the expected reward, which is designed to reflect human preferences.</p>
+</li>
+<li>
+<p><strong>Applications and Benefits:</strong> It has shown significant success in aligning models with human preferences, enhancing aspects like factual accuracy, coherence, and safety in generated content. One of the primary advantages of RLHF is its ability to optimize for complex, subjective metrics, which are difficult to capture using traditional supervised learning.</p>
+</li>
+<li>
+<p><strong>Challenges:</strong> RLHF introduces several challenges, particularly around the quality and consistency of human feedback. Human annotators may introduce biases, and there is also the problem of reward model overfitting. Furthermore, RL algorithms often require substantial computational resources, especially when fine-tuning models with large numbers of parameters.</p>
+</li>
+</ul>
+<p>Despite these challenges, RLHF has proven effective in fine-tuning models making them more useful in real-world applications like chatbots, content generation, and recommendation systems, where human-like reasoning and alignment are necessary.</p>
+<h4 id="recommended-reading-2" class="relative group">Recommended Reading: <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#recommended-reading-2" aria-label="Anchor">#</a></span></h4><ul>
+<li><a href="https://arxiv.org/abs/1706.03741" target="_blank" rel="noreferrer">Deep Reinforcement Learning from Human Preferences</a> by Christiano et al.<br>
+This seminal paper describes the RLHF approach and how reinforcement learning can be used to train agents based on human feedback.</li>
+<li><a href="https://arxiv.org/abs/2009.01325" target="_blank" rel="noreferrer">Learning to Summarize with Human Feedback</a> by Nisan Stiennon et al.<br>
+This paper explores how RLHF can be used for text summarization tasks, demonstrating its effectiveness in aligning model outputs with human preferences.</li>
+<li>Another interesting blog on RLHF, which explains the topic in detail: <a href="https://huyenchip.com/2023/05/02/rlhf.html" target="_blank" rel="noreferrer">RLHF: Reinforcement Learning from Human Feedback</a></li>
+</ul>
+<hr>
+<h2 id="comparison-of-pretraining-sft-peft-and-rlhf" class="relative group">Comparison of Pretraining, SFT, PEFT, and RLHF <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#comparison-of-pretraining-sft-peft-and-rlhf" aria-label="Anchor">#</a></span></h2><table>
+  <thead>
+      <tr>
+          <th><strong>Aspect</strong></th>
+          <th><strong>Pretraining</strong></th>
+          <th><strong>SFT (Supervised Fine-Tuning)</strong></th>
+          <th><strong>PEFT (Parameter-Efficient Fine-Tuning)</strong></th>
+          <th><strong>RLHF (Reinforcement Learning with Human Feedback)</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Purpose</strong></td>
+          <td>Learn general language patterns.</td>
+          <td>Specialize for specific tasks.</td>
+          <td>Fine-tune efficiently with fewer parameters.</td>
+          <td>Align with human preferences.</td>
+      </tr>
+      <tr>
+          <td><strong>Data Type</strong></td>
+          <td>Large unlabeled text data.</td>
+          <td>Labeled task-specific data.</td>
+          <td>Labeled data + minimal task-specific changes.</td>
+          <td>Labeled data + human feedback.</td>
+      </tr>
+      <tr>
+          <td><strong>Learning Mechanism</strong></td>
+          <td>Self-supervised (e.g., MLM, next token).</td>
+          <td>Supervised learning on labeled data.</td>
+          <td>Fine-tune small parameters, freeze others.</td>
+          <td>Reinforcement learning with human feedback as reward.</td>
+      </tr>
+      <tr>
+          <td><strong>Training Goal</strong></td>
+          <td>Generalize across tasks.</td>
+          <td>Optimize for specific tasks.</td>
+          <td>Reduce fine-tuning costs and resource use.</td>
+          <td>Align model behavior with human feedback.</td>
+      </tr>
+      <tr>
+          <td><strong>Pros</strong></td>
+          <td>Scalable, generalizes well.</td>
+          <td>High performance on specific tasks.</td>
+          <td>Fast, efficient fine-tuning.</td>
+          <td>Aligns with human values.</td>
+      </tr>
+      <tr>
+          <td><strong>Cons</strong></td>
+          <td>Expensive, not task-specific.</td>
+          <td>Requires large labeled datasets.</td>
+          <td>May not achieve best performance.</td>
+          <td>Expensive, depends on quality feedback.</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="conclusion" class="relative group"><strong>Conclusion</strong> <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#conclusion" aria-label="Anchor">#</a></span></h2><p>Training large language models is a complex, multi-stage process that involves both <strong>pre-training</strong> on vast, generic datasets and <strong>fine-tuning</strong> on specific tasks. The traditional approach to fine-tuning, <strong>Supervised Fine-Tuning (SFT)</strong>, has been highly effective but is computationally expensive. Newer techniques like <strong>Parameter-Efficient Fine-Tuning (PEFT)</strong> provide more efficient alternatives for adapting models with fewer parameters and less data. Finally, <strong>Reinforcement Learning from Human Feedback (RLHF)</strong> goes one step further by incorporating human preferences into the training process, ensuring that models align with human values and expectations.</p>
+<p>I hope you enjoyed the article and found it helpful. If you have any questions or would like to explore the topic further, feel free to reach out!  <strong>Happy Reading</strong>! :D</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+      
+      
+        
+        
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="!mb-0 !mt-0 me-4 w-24 h-auto rounded-full"
+      
+    >
+      
+      
+      
+      
+      <img
+        width="500"
+        height="500"
+        class="!mb-0 !mt-0 me-4 w-24 h-auto rounded-full"
+        alt="Shefali Garg"
+        loading="lazy" decoding="async"
+        
+          src="/img/shefali_pp.jpg"
+        
+      />
+    </picture>
+  
+
+
+      
+    
+    <div class="place-self-center">
+      
+        <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+          Author
+        </div>
+        <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+          Shefali Garg
+        </div>
+      
+      
+        <div class="text-sm text-neutral-700 dark:text-neutral-400">Software Engineer at Google DeepMind</div>
+      
+      <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://github.com/shefali92"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://www.linkedin.com/in/gargshefali/"
+          target="_blank"
+          aria-label="Linkedin"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://www.researchgate.net/profile/Shefali-Garg"
+          target="_blank"
+          aria-label="Researchgate"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 32v448h448V32H0zm262.2 334.4c-6.6 3-33.2 6-50-14.2-9.2-10.6-25.3-33.3-42.2-63.6-8.9 0-14.7 0-21.4-.6v46.4c0 23.5 6 21.2 25.8 23.9v8.1c-6.9-.3-23.1-.8-35.6-.8-13.1 0-26.1.6-33.6.8v-8.1c15.5-2.9 22-1.3 22-23.9V225c0-22.6-6.4-21-22-23.9V193c25.8 1 53.1-.6 70.9-.6 31.7 0 55.9 14.4 55.9 45.6 0 21.1-16.7 42.2-39.2 47.5 13.6 24.2 30 45.6 42.2 58.9 7.2 7.8 17.2 14.7 27.2 14.7v7.3zm22.9-135c-23.3 0-32.2-15.7-32.2-32.2V167c0-12.2 8.8-30.4 34-30.4s30.4 17.9 30.4 17.9l-10.7 7.2s-5.5-12.5-19.7-12.5c-7.9 0-19.7 7.3-19.7 19.7v26.8c0 13.4 6.6 23.3 17.9 23.3 14.1 0 21.5-10.9 21.5-26.8h-17.9v-10.7h30.4c0 20.5 4.7 49.9-34 49.9zm-116.5 44.7c-9.4 0-13.6-.3-20-.8v-69.7c6.4-.6 15-.6 22.5-.6 23.3 0 37.2 12.2 37.2 34.5 0 21.9-15 36.6-39.7 36.6z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="https://scholar.google.com/citations?user=dSj98N4AAAAJ&amp;hl=en"
+          target="_blank"
+          aria-label="Google-Scholar"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="currentColor" d="M390.9 298.5c0 0 0 .1 .1 .1c9.2 19.4 14.4 41.1 14.4 64C405.3 445.1 338.5 512 256 512s-149.3-66.9-149.3-149.3c0-22.9 5.2-44.6 14.4-64h0c1.7-3.6 3.6-7.2 5.6-10.7c4.4-7.6 9.4-14.7 15-21.3c27.4-32.6 68.5-53.3 114.4-53.3c33.6 0 64.6 11.1 89.6 29.9c9.1 6.9 17.4 14.7 24.8 23.5c5.6 6.6 10.6 13.8 15 21.3c2 3.4 3.8 7 5.5 10.5zm26.4-18.8c-30.1-58.4-91-98.4-161.3-98.4s-131.2 40-161.3 98.4L0 202.7 256 0 512 202.7l-94.7 77.1z"/></svg></span></a
+        >
+      
+    
+  </div>
+
+</div>
+    </div>
+  </div>
+
+
+      
+  
+  <section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/training/&amp;quote=Training%20Large%20Language%20Models:%20From%20Pre-training%20to%20Fine-tuning%20and%20Beyond%20%e2%80%93%20SFT,%20PEFT,%20and%20RLHF"
+          title="Share on Facebook"
+          aria-label="Share on Facebook"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://twitter.com/intent/tweet/?url=http://localhost:1313/posts/training/&amp;text=Training%20Large%20Language%20Models:%20From%20Pre-training%20to%20Fine-tuning%20and%20Beyond%20%e2%80%93%20SFT,%20PEFT,%20and%20RLHF"
+          title="Tweet on Twitter"
+          aria-label="Tweet on Twitter"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://reddit.com/submit/?url=http://localhost:1313/posts/training/&amp;resubmit=true&amp;title=Training%20Large%20Language%20Models:%20From%20Pre-training%20to%20Fine-tuning%20and%20Beyond%20%e2%80%93%20SFT,%20PEFT,%20and%20RLHF"
+          title="Submit to Reddit"
+          aria-label="Submit to Reddit"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/posts/training/&amp;title=Training%20Large%20Language%20Models:%20From%20Pre-training%20to%20Fine-tuning%20and%20Beyond%20%e2%80%93%20SFT,%20PEFT,%20and%20RLHF"
+          title="Share on LinkedIn"
+          aria-label="Share on LinkedIn"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+</span></a
+        >
+      
+    
+      
+        <a
+          class="m-1 inline-block min-w-[2.4rem] rounded bg-neutral-300 p-1 text-center text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          href="mailto:?body=http://localhost:1313/posts/training/&amp;subject=Training%20Large%20Language%20Models:%20From%20Pre-training%20to%20Fine-tuning%20and%20Beyond%20%e2%80%93%20SFT,%20PEFT,%20and%20RLHF"
+          title="Send via email"
+          aria-label="Send via email"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+</span></a
+        >
+      
+    
+  </section>
+
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/posts/tranformer/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Transformers and Attention: The Backbone of LLMs</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-11-25 00:00:00 &#43;0000 UTC">25 November 2024</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+        
+          
+        
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            © Shefali Garg
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+        <div
+          class="me-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        >
+          <button id="appearance-switcher-0" type="button" aria-label="appearance switcher">
+            <div
+              class="flex h-12 w-12 items-center justify-center dark:hidden"
+              title="Switch to dark appearance"
+            >
+              <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+            </div>
+            <div
+              class="hidden h-12 w-12 items-center justify-center dark:flex"
+              title="Switch to light appearance"
+            >
+              <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+            </div>
+          </button>
+        </div>
+      
+    </div>
+  </div>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="http://localhost:1313/"
+>
+  <div
+    id="search-modal"
+    class="top-20 mx-auto flex min-h-0 w-full max-w-3xl flex-col rounded-md border border-neutral-200 bg-neutral shadow-lg dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex flex-none items-center justify-between px-2">
+      <form class="flex min-w-0 flex-auto items-center">
+        <div class="flex h-8 w-8 items-center justify-center text-neutral-400">
+          <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="mx-1 flex h-12 flex-auto appearance-none bg-transparent focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex h-8 w-8 items-center justify-center text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto overflow-auto px-2">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+</html>

@@ -4,6 +4,7 @@ date: 2024-04-06
 description: "This article explores BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition."
 tags: ["Speech", "AI", "Self-supervised Training"]
 ---
+# Understanding BEST-RQ: A Simple Self-Supervised Pre-training Approach for Speech Recognition
 
 Have you ever wished your voice assistant understood you a little better? Automatic speech recognition (ASR) technology is constantly evolving, but achieving high accuracy can be complex. Today, we’ll explore a new approach called [BEST-RQ (BERT-based Speech pre-Training with Random-projection Quantizer](https://proceedings.mlr.press/v162/chiu22a/chiu22a.pdf)) introduced by Google Researchers in 2023 that has made waves in the field.
 
